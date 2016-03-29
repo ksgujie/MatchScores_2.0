@@ -1,5 +1,8 @@
 <?php namespace App\Http\Controllers;
 
+use App\Modules\Excel\Excel;
+use App\Modules\Excel\Template;
+use App\Modules\MatchConfig\Item;
 use App\User;
 use Illuminate\Support\Facades\Redirect;
 
@@ -8,7 +11,7 @@ class ActionController extends Controller {
 	public function run($do)
 	{
 		$this->$do();
-		return Redirect::to('/')->with('message', date("Y-m-d H:i:s")."完成：$do \n耗时：". $this->runnedTime());
+		return Redirect::to('main/index')->with('message', date("Y-m-d H:i:s")."完成：$do \n耗时：". $this->runnedTime());
 	}
 
 	public function 导入报名数据()
@@ -95,6 +98,34 @@ class ActionController extends Controller {
 				}//foreach
 			}//for j
 		}//for i
+	}
+
+	public function 生成裁判用表()
+	{
+		$objTemplateExcel = Template::生成裁判用表模板(gbk(matchConfig('路径.工作目录').'/模板/裁判用表模板.xls'));
+		$arrItems = matchConfig('裁判用表参数');
+//		dd($arrItems);
+		$objExcel = new Excel();
+		foreach ($arrItems as $itemName => $item) {
+//			dd($item);////////////////
+			$data = User::where('项目', $itemName)->orderBy('编号')->get();
+			$config = [
+//				'objExcel'=>$objTemplateExcel,
+				'templateFile'=>gbk(matchConfig('路径.工作目录').'/模板/裁判用表模板.xls'),
+				'sheetName'=>$item['表名'],
+				'firstDataRowNum'=>$item['首条数据行号'],
+				'data'=>$data,
+			];
+//			dd($config);
+			$objExcel->setConfig($config);
+			$objExcel->make();
+
+			//页眉、页脚
+			$objExcel->objSheet->getHeaderFooter()->setOddHeader('&C&"黑体,常规"&16 '. matchConfig('全局.比赛名称') . "\n&\"宋体,常规\"&14（{$itemName}）" );
+			$objExcel->objSheet->getHeaderFooter()->setOddFooter( '&L&P/&N页&R裁判员签名_______________ 项目裁判长签名_______________');
+		}
+
+		$objExcel->save(gbk(matchConfig('路径.工作目录').'/裁判用表.xls'));
 	}
 
 	public function 自定义导入()

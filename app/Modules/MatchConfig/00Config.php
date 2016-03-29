@@ -90,4 +90,3 @@ class Config {
 		return $config;
 	}
 }
-
