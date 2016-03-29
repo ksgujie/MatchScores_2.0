@@ -13,7 +13,7 @@ class ActionController extends Controller {
 
 	public function 导入报名数据()
 	{
-		$filename = mycfg('路径.工作目录') . '/导入/报名数据导入.xls';
+		$filename = matchConfig('路径.工作目录') . '/导入/报名数据导入.xls';
 		$filename = gbk($filename);
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
 		$objSheet = $objExcel->getActiveSheet();
@@ -70,11 +70,11 @@ class ActionController extends Controller {
 	 */
 	public function 编号()
 	{
-		$arrItems = array_keys(mycfg('项目'));
-		dump(mycfg('项目'));
+		$arrItems = array_keys(matchConfig('项目'));
+		dump(matchConfig('项目'));
 		for ($i = 0; $i < count($arrItems); $i++) {
 			$item = $arrItems[$i];
-			$arrGroups = mycfg("项目.$item.组别");
+			$arrGroups = matchConfig("项目.$item.组别");
 			for ($j = 0; $j < count($arrGroups); $j++) {
 				$group = $arrGroups[$j];
 				$Users = User::where('项目', $item)
@@ -86,7 +86,7 @@ class ActionController extends Controller {
 
 				$n=1;
 				foreach ($Users as $user) {
-					$编号 = mycfg("项目.$item.表名") . $this->lerrers[$j] . sprintf("%03d", $n);
+					$编号 = matchConfig("项目.$item.表名") . $this->lerrers[$j] . sprintf("%03d", $n);
 
 					$user->编号 = $编号;
 					$a=$user->save();
@@ -99,7 +99,7 @@ class ActionController extends Controller {
 
 	public function 自定义导入()
 	{
-		$filename = mycfg('路径.工作目录') . '/导入/自定义导入.xls';
+		$filename = matchConfig('路径.工作目录') . '/导入/自定义导入.xls';
 		$filename = gbk($filename);
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
 		$objSheet = $objExcel->getSheetByName('导入');

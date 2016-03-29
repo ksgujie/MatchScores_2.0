@@ -67,9 +67,9 @@ function configFilePath($filename)
 	return base_path("配置文件/$filename");
 }
 
-function mycfg($strKeys) {
+function matchConfig($strKeys) {
 	$keys = explode('.', $strKeys);
-	$matchConfig = \App\Modules\MatchConfig::read();
+	$matchConfig = \App\Modules\MatchConfig\Config::read();
 	$r=null;
 	foreach ($keys as $key) {
 		if (!$r) {
