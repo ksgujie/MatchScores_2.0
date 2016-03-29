@@ -50,6 +50,7 @@
             <ol>
                 <li> {!! Html::link('action/更改姓名', '导入[更改姓名]') !!} </li>
                 <li> {!! Html::link('action/添加名单', '导入[添加名单]') !!} </li>
+                <li> {!! Html::link('action/自定义导入', '导入[自定义数值]') !!} </li>
             </ol>
         </td>
         <td>

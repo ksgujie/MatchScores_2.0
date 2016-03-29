@@ -96,4 +96,33 @@ class ActionController extends Controller {
 			}//for j
 		}//for i
 	}
+
+	public function 自定义导入()
+	{
+		$filename = mycfg('路径.工作目录') . '/导入/自定义导入.xls';
+		$filename = gbk($filename);
+		$objExcel = \PHPExcel_IOFactory::load( $filename );
+		$objSheet = $objExcel->getSheetByName('导入');
+		if (!$objSheet) {
+			exit("错误：未找到名为“导入”的表");
+		}
+
+		$arrData=$objSheet->toArray();
+		//导入值的字段名
+		$valueField = trim($arrData[0][1]);
+		if (!\Schema::hasColumn('users', $valueField )) {
+			exit("$valueField 数据库中没有此字段");
+		}
+
+		for ($i = 1; $i < count($arrData); $i++) {
+			$value = trim($arrData[$i][1]);
+			if (strlen($value)) {
+				$user = User::where('编号', $arrData[$i][0])->firstOrFail();
+				$user->分组 = $value;
+				$user->save();
+			}
+		}
+	}
+
+
 }

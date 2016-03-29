@@ -72,6 +72,7 @@ class MainController extends Controller {
 		copy(gbk(base_path('/通用模板/报名数据导入.xls')), gbk($workDir.'/导入/报名数据导入.xls'));
 		copy(gbk(base_path('/通用模板/更改姓名.xls')), gbk($workDir.'/导入/更改姓名.xls'));
 		copy(gbk(base_path('/通用模板/添加名单.xls')), gbk($workDir.'/导入/添加名单.xls'));
+		copy(gbk(base_path('/通用模板/自定义导入.xls')), gbk($workDir.'/导入/自定义导入.xls'));
 	}
 
 	public function getIndex()
@@ -130,5 +131,6 @@ class MainController extends Controller {
 		$objWriter->save('g:/a.xls');
 		echo 'ok';
 	}
+	
 
 }
