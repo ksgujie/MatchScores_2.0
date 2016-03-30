@@ -73,6 +73,11 @@ function matchConfig($strKeys) {
 	$r=null;
 	foreach ($keys as $key) {
 		if (!$r) {
+			if (!isset($matchConfig[$key])) {
+				dump($strKeys);
+//				pd("{$strKeys}：{$key} 不存在");
+			}
+
 			$r = $matchConfig[$key];
 		} else {
 			$r = $r[$key];

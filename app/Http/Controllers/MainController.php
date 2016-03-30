@@ -87,9 +87,9 @@ class MainController extends Controller {
 			$_sheet->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_HIDDEN);
 		}
 		//复制“裁判用表”，用于复制格式
-		$objSheetConfig = $objExcel->getSheetByName('裁判用表参数');
+		$objSheetConfig = $objExcel->getSheetByName('裁判用表');
 
-		foreach ($this->config['裁判用表参数'] as $item=>$itemConfig) {
+		foreach ($this->config['裁判用表'] as $item=>$itemConfig) {
 //			检查表格在配置文件中是否存在，如果存在就复制一个过来，否则新建一个
 			$objSheet = $objExcel->getSheetByName($itemConfig['表名']);
 			if ($objSheet != null) {

@@ -103,7 +103,7 @@ class ActionController extends Controller {
 	public function 生成裁判用表()
 	{
 		$objTemplateExcel = Template::生成裁判用表模板(gbk(matchConfig('路径.工作目录').'/模板/裁判用表模板.xls'));
-		$arrItems = matchConfig('裁判用表参数');
+		$arrItems = matchConfig('裁判用表');
 //		dd($arrItems);
 		$objExcel = new Excel();
 		foreach ($arrItems as $itemName => $item) {
@@ -120,11 +120,24 @@ class ActionController extends Controller {
 			$objExcel->setConfig($config);
 			$objExcel->make();
 
+			//设置分页
+			$objExcel->insertPageBreak('分组');
 			//页眉、页脚
 			$objExcel->objSheet->getHeaderFooter()->setOddHeader('&C&"黑体,常规"&16 '. matchConfig('全局.比赛名称') . "\n&\"宋体,常规\"&14（{$itemName}）" );
 			$objExcel->objSheet->getHeaderFooter()->setOddFooter( '&L&P/&N页&R裁判员签名_______________ 项目裁判长签名_______________');
+			//面边距
+			$objExcel->objSheet->getPageMargins()->setHeader(0.3);
+			$objExcel->objSheet->getPageMargins()->setTop(0.85);
+			$objExcel->objSheet->getPageMargins()->setFooter(0.2);
+			$objExcel->objSheet->getPageMargins()->setBottom(0.5);
+			$objExcel->objSheet->getPageMargins()->setLeft(0.2);
+			$objExcel->objSheet->getPageMargins()->setRight(0.2);
 		}
-
+		//缩小打印到一页
+		if (matchConfig("裁判用表.$itemName.缩至一页")=='是') {
+			$objExcel->printInOnePage();
+		}
+		//保存
 		$objExcel->save(gbk(matchConfig('路径.工作目录').'/裁判用表.xls'));
 	}
 

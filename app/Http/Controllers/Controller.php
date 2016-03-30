@@ -59,8 +59,8 @@ class Controller extends BaseController
             }
         }
 
-        //读取裁判用表参数表
-        $sheetName='裁判用表参数';
+        //读取裁判用表表
+        $sheetName='裁判用表';
         $objSheet = $objExcel->getSheetByName($sheetName);
         $rs = $objSheet->toArray();
         $fields = $rs[1];

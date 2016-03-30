@@ -151,6 +151,7 @@ class Excel extends Base {
 			$objPageSetup = $this->objSheet->getPageSetup();
 			$objPageSetup->setRowsToRepeatAtTopByStartAndEnd(1, $this->firstDataRowNum-1);//打印标题行
 			$objPageSetup->setHorizontalCentered(true);//水平居中
+			$objPageSetup->setVerticalCentered(false);//垂直不居中
 
 //			$this->objSheet->getHeaderFooter()->setOddHeader('&C&"黑体,常规"&16 '. config('my.比赛名称') . "&\"宋体,常规\"&14（{$item}）" );
 //			$this->objSheet->getHeaderFooter()->setOddFooter( '&L&P/&N页'
@@ -196,8 +197,12 @@ class Excel extends Base {
 	public function printInOnePage()
 	{
 		$objPageSetup = $this->objSheet->getPageSetup();
+		//缩放
+//		$objPageSetup->setFitToPage = true;
+		//缩放至一页宽
 		$objPageSetup->setFitToWidth(1);
-		$objPageSetup->setFitToHeight(3000);
+		//缩放至N页高
+		$objPageSetup->setFitToHeight(0);
 	}
 
 	/**
@@ -258,7 +263,7 @@ class Excel extends Base {
 					//将当前用户（对象）的值转化为数组
 					$arrUser = $User->toarray();
 					//去除模板键前后中拨号，转化为字段名
-					$templateKey = $this->templateRow[$this->objSheetName][$k];
+					$templateKey = $this->templateRow[$this->sheetName][$k];
 
 					//插入分页符
 					if (!strlen($lastCellValue)) {

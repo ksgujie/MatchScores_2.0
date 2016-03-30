@@ -23,9 +23,9 @@ class Template extends Base {
 			$_sheet->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_HIDDEN);
 		}
 		//复制“裁判用表”，用于复制格式
-		$objSheetConfig = self::$objExcel->getSheetByName('裁判用表参数');
+		$objSheetConfig = self::$objExcel->getSheetByName('裁判用表');
 
-		foreach ($matchConfig['裁判用表参数'] as $item=>$itemConfig) {
+		foreach ($matchConfig['裁判用表'] as $item=>$itemConfig) {
 //			检查表格在配置文件中是否存在，如果存在就该表取消隐藏，否则新建一个
 			$objSheet = self::$objExcel->getSheetByName($itemConfig['表名']);
 			if ($objSheet != null) {
@@ -33,6 +33,7 @@ class Template extends Base {
 			} else {
 				$objSheet = self::$objExcel->createSheet();
 				$objSheet->setTitle($itemConfig['表名']);	//设置表名
+				$objSheet->getTabColor()->setRGB('000000');	//设置标签颜色
 				//设置标题行（第一行）、首条数据行（第二行）
 //				for ($i = 0; $i < count($itemConfig['字段']); $i++) {
 				//列索引（第几个列）
@@ -74,5 +75,23 @@ class Template extends Base {
 		}
 
 		return self::$objExcel;
+	}
+
+
+	public static function 生成成绩录入表()
+	{
+		$file = gbk(matchConfig('全局.工作目录').'/导入/成绩录入.xls');
+		self::checkFile($file);
+
+		//////////////////生成录入模板表///////////////
+		
+
+	}
+
+	public static function checkFile($file)
+	{
+		if (is_file($file)) {
+			dd(utf8($file) . " 已经存在，无法覆盖生成！");
+		}
 	}
 }
