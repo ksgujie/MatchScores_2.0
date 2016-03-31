@@ -36,10 +36,10 @@
 
             @endif
 
-            @if (Session::has('message'))
+            @if (session('message'))
 
                 <div class="alert alert-warning" style="color:blue" >
-                    <h4>{{ Session::get('message') }}</h4>
+                    <h4>{{ session('message') }}</h4>
                 </div>
 
             @endif

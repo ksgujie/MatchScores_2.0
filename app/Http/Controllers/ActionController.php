@@ -4,14 +4,14 @@ use App\Modules\Excel\FillData;
 use App\Modules\Excel\Template;
 use App\Modules\MatchConfig\Item;
 use App\User;
-use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 
 class ActionController extends Controller {
 
 	public function run($do)
 	{
 		$this->$do();
-		return Redirect::to('main/index')->with('message', date("Y-m-d H:i:s")."完成：$do \n耗时：". $this->runnedTime());
+		return redirect('main/index')->with('message', date("Y-m-d H:i:s")."完成：$do \n耗时：". $this->runnedTime());
 	}
 
 	public function 导入报名数据()
@@ -50,7 +50,7 @@ class ActionController extends Controller {
 			}
 		}
 
-		return Redirect::to('/')->with('message', "成功，共导入{$insertCount}条数据！耗时：". $this->runnedTime());
+		return redirect('/')->with('message', "成功，共导入{$insertCount}条数据！耗时：". $this->runnedTime());
 	}
 
 	public function 报名顺序()
@@ -266,11 +266,18 @@ class ActionController extends Controller {
 				if (!$allScoresIsEmpty || !$allMarksIsEmpty) {
 					$User->save();
 				}
+			}//for
+		}//foreach
 
-			}
+		session(['message'=>'ffffffffffff']);
+		$a=session('kk','xbc');
 
-		}
+		$_SESSION['dddd']='wwwwwwwwwwwwwwwwww';
+		$_SESSION['message']='fffffffffffff';
 
+//		dd($a);
+
+		return redirect('main/index')->with('message', '中华人民共和国');
 	}
 
 	public function 自定义导入()

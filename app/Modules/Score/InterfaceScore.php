@@ -11,8 +11,8 @@ namespace App\Modules;
 
 interface InterfaceScore
 {
-	public function ×îÖÕ³É¼¨();
-	public function ³É¼¨ÏÔÊ¾();
-	public function ÅÅĞòÄÚÈİ();
+	public function æœ€ç»ˆæˆç»©();
+	public function æˆç»©æ˜¾ç¤º();
+	public function æ’åºå†…å®¹();
 
 }
