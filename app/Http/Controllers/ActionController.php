@@ -134,11 +134,12 @@ class ActionController extends Controller {
 			$objExcel->objSheet->getPageMargins()->setBottom(0.5);
 			$objExcel->objSheet->getPageMargins()->setLeft(0.2);
 			$objExcel->objSheet->getPageMargins()->setRight(0.2);
+			//缩小打印到一页
+			if (matchConfig("裁判用表.$itemName.缩至一页")=='是') {
+				$objExcel->printInOnePage();
+			}
 		}
-		//缩小打印到一页
-		if (matchConfig("裁判用表.$itemName.缩至一页")=='是') {
-			$objExcel->printInOnePage();
-		}
+
 		//保存
 		$objExcel->save($savefile);
 	}
@@ -268,14 +269,6 @@ class ActionController extends Controller {
 				}
 			}//for
 		}//foreach
-
-		session(['message'=>'ffffffffffff']);
-		$a=session('kk','xbc');
-
-		$_SESSION['dddd']='wwwwwwwwwwwwwwwwww';
-		$_SESSION['message']='fffffffffffff';
-
-//		dd($a);
 
 		return redirect('main/index')->with('message', '中华人民共和国');
 	}

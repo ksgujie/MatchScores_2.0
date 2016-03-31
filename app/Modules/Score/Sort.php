@@ -1,5 +1,7 @@
 <?php namespace App\Modules\Score;
 
+use App\Modules\Score\Show;
+
 class Sort
 {
 	public static function 原始成绩($s)
@@ -58,6 +60,10 @@ class Sort
 	 */
 	public static function 高低分用时短($inputScore1, $inputScore2, $timeLen = 6)
 	{
+		//自动补零
+		$inputScore1 = Show::补零($inputScore1);
+		$inputScore2 = Show::补零($inputScore2);
+		
 		$strReg = '/^(\d+)(\d{'. $timeLen .'})$/';
 		preg_match($strReg, $inputScore1, $arr);
 		$score1 = $arr[1];

@@ -5,15 +5,15 @@ use Illuminate\Support\Facades\Cache;
 include_once app_path('/Libs/PHPExcel/PHPExcel.php');
 
 class Config {
-
+	
 	public static $config;
-
+	
 	public static function read()
 	{
 		if (self::$config) {
 			return self::$config;
 		}
-
+		
 		$config = [];//保存结果
 
 		$objExcel = \PHPExcel_IOFactory::load(gbk(configFilePath(Cache::get('配置文件'))));
@@ -26,24 +26,26 @@ class Config {
 				$config[$sheetName][$rs[$i][0]] = trim($rs[$i][1]);
 			}
 		}
-
+		
 		//根据标题确定值的表，字段数相同的表
-		$arrSheets = ['项目'];
+		$arrSheets = ['项目','成绩'];
 		foreach ($arrSheets as $sheetName) {
 			$objSheet = $objExcel->getSheetByName($sheetName);
 			$rs = $objSheet->toArray();
 			$fields = $rs[1];
 			for ($i = 2; $i < count($rs); $i++) {
 				$row = $rs[$i];
-				$itemName = $row[0];
-				for ($j = 1; $j < count($row); $j++) {
-					$field = trim($fields[$j]);
-					$cellValue = $row[$j];
-					$config[$sheetName][$itemName][$field] = $cellValue;
+				$itemName = trim($row[0]);
+				if (strlen($itemName)) {
+					for ($j = 1; $j < count($row); $j++) {
+						$field = trim($fields[$j]);
+						$cellValue = $row[$j];
+						$config[$sheetName][$itemName][$field] = trim($cellValue);
+					}
 				}
 			}
 		}
-
+		
 		//读取裁判用表表
 		$sheetName='裁判用表';
 		$objSheet = $objExcel->getSheetByName($sheetName);
@@ -71,11 +73,11 @@ class Config {
 							$config[$sheetName][$itemName][$field] = $cellValue;	//其它值
 						}
 					}
-
+					
 				}
 			}
 		}
-
+		
 		//把字符串形式的“组别”转化为数组
 		foreach ($config['项目'] as $item=>$itemConfig) {
 			foreach ($itemConfig as $_k => $_config) {
@@ -83,8 +85,25 @@ class Config {
 					$config['项目'][$item][$_k]=preg_split('/\s+/', $_config);
 				}
 			}
-
 		}
+
+		//把“成绩/获奖比例”转化为数组
+		// dd($config['项目']);
+		//dd($config['成绩']);
+		foreach ($config['成绩'] as $item => $itemConfig) {
+			foreach ($itemConfig as $_k => $_config) {
+				if ($_k=='获奖比例') {
+					$array = preg_split('/\s+/', trim($_config));
+					$_arrResult = [];
+					for ($i=0; $i < count($array)/2; $i++) {
+						$_arrResult[$array[$i*2]] = $array[$i*2+1];
+					}
+					// dd($_arrResult);
+					$config['成绩'][$item][$_k] = $_arrResult;
+				}
+			}
+		}
+
 		//返回值
 		self::$config = $config;
 		return $config;

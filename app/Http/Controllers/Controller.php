@@ -1,6 +1,5 @@
-<?php
+<?php namespace App\Http\Controllers;
 
-namespace App\Http\Controllers;
 require app_path().'/Libs/PHPExcel/PHPExcel.php';
 require app_path().'/Libs/functions.php';
 

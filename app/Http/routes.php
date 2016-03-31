@@ -15,6 +15,7 @@ Route::get('/', 'MainController@boot');
 
 Route::Controller('main', 'MainController');
 Route::get('action/{do}', 'ActionController@run');
+Route::get('score/calc', 'ScoreController@计算成绩');
 Route::get('score/{do}', 'ScoreController@run');
 /*
 |--------------------------------------------------------------------------

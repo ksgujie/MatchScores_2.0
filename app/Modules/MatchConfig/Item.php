@@ -13,8 +13,8 @@ class Item {
 	public $组别;
 	public $号位;
 	public $分组;
-	public $成绩排序字段;
-	public $成绩排序方式;
+	public $成绩排序;
+	public $排序方式;
 	public $成绩显示格式;
 
 	public function __construct($name)
@@ -26,8 +26,8 @@ class Item {
 		$this->组别 = $item['组别'];
 		$this->号位 = $item['号位'];
 		$this->分组 = $item['分组'];
-		$this->成绩排序字段 = $item['成绩排序字段'];
-		$this->成绩排序方式 = $item['成绩排序方式'];
+		$this->成绩排序 = $item['成绩排序'];
+		$this->排序方式 = $item['排序方式'];
 		$this->成绩显示格式 = $item['成绩显示格式'];
 	}
 }

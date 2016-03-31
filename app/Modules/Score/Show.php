@@ -1,4 +1,4 @@
-<?php namespace App\Modules;
+<?php namespace App\Modules\Score;
 
 use App\Models\User;
 

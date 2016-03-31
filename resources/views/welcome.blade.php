@@ -17,6 +17,11 @@
                 <li> {!! Html::link('action/生成成绩录入表', '生成成绩录入表') !!} </li>
                 <li> {!! Html::link('action/成绩导入', '成绩导入') !!} </li>
                 <li> {!! Html::link('score/计算成绩', '计算成绩') !!} </li>
+                    <ol>
+                        @foreach($items as $item)
+                            <li> {!! Html::link('score/calc/?'.$item, $item) !!} </li>
+                        @endforeach
+                    </ol>
                 <li> {!! Html::link('score/优秀辅导员', '计算优秀辅导员') !!} </li>
                 <li> {!! Html::link('score/生成获奖名单', '生成获奖名单（打印）') !!} </li>
                 <li> {!! Html::link('score/生成综合团体成绩表', '生成综合团体成绩表（打印）') !!} </li>

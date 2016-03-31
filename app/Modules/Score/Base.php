@@ -106,46 +106,7 @@ abstract class Base
 	}
 
 
-	/**
-	 * 根据比例设定各个组的奖项，要先计算出排名才能使用该方法
-	 * @param $item 项目
-	 * @param $group 组别
-	 * @param $jiangxiangAndBili 奖项及比例 按从高到底排列 例（一、二、三等奖比例分别为10%、20%、30% ）：array('一等奖'=>'0.1', '二等奖'=>'0.2', '三等奖'=>'0.3')
-	 */
-	public function 奖项_按比例分配($item, $group, $jiangxiangAndBili)
-	{
-//				\DB::connection()->enableQueryLog();/////////////////////////////
-
-		//清空本项目、本组别的奖项值
-		\DB::update("update users set 奖项='' WHERE 项目=? and 组别=?", [$item, $group]);
-		//本项目、本组别总人数
-		$userCount = User::where('项目', $item)->where('组别', $group)->count();
-		foreach ($jiangxiangAndBili as $jiangxiang=>$bili) { //$bili比例，$jiangxiang奖项
-			$users = User::whereRaw("项目=? and 组别=? and 奖项='' order by if(排名='',1,0), abs(排名)", [$item, $group])->get();
-//			$users = User::where('项目', $item)
-//				->where('组别', $group)
-//				->where('奖项','')
-//				->orderBy('排名')
-//				->get();
-			$thisUserCount = round($bili * $userCount);//本奖项的人数 四舍五入
-
-			for ($i = 0; $i < $thisUserCount; $i++) {
-				$user = $users[$i];
-				$user->奖项 = $jiangxiang;
-				$user->save();
-
-				$thisItemGroupUserSort = $user->排名;//本项目、组别、奖项的最后一个用户的排名
-			}
-
-//			dd(\DB::getQueryLog());
-//			dd($users);//////////////////////////
-//			dd($thisUserCount);
-//			dd([$jiangxiang, $item, $group, $thisItemGroupUserSort]);
-			//处理与本奖项最后一人排名相同人的奖项，应该与之相同（并列）。
-			\DB::update("update users set 奖项=? WHERE 项目=? and  组别=? and 排名=?",
-				[$jiangxiang, $item, $group, $thisItemGroupUserSort]);
-		}
-	}
+	
 
 
 	/**

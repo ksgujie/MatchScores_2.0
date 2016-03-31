@@ -1,35 +1,31 @@
-<?php namespace App\Modules;
+<?php namespace App\Modules\Score;
 
-use App\Models\User;
+use App\User;
+use App\Modules\MatchConfig\Score;
 
-abstract class Calc
+class Calc
 {
 	/**
-	 * 清空已经计算好的成绩
+	 * 将数据库中的“成绩排名”字段计算、填充
+	 * @param $项目名称
 	 */
-	public function 清空成绩()
+	public function 填充排序字段($项目名称)
 	{
-		\DB::update("update users set 最终成绩1='',最终成绩2='',最终成绩3='',最终成绩4='',最终成绩5='',
-				显示_最终成绩1='',显示_最终成绩2='',显示_最终成绩3='',显示_最终成绩4='',显示_最终成绩5='',
-				最好成绩='',显示_最好成绩='',成绩排序='',排名='',奖项='',积分=''");
-	}
-
-
-	/**
-	 * 一般不使用，除非所有项目排序方式相同
-	 * @param string $orderType
-	 */
-	public function 全部排名($orderType = '降序')
-	{
-		$arrItems = SysConfig::items();
-		foreach ($arrItems as $item) {
-			SysConfig::setItem($item);
-			$arrGroups = SysConfig::item('组别');
-			foreach ($arrGroups as $group) {
-				$this->单项排名($item, $group, $orderType);
+		$cfgScore	= new Score($项目名称);
+		////////////计算填充成绩排序字段的内容////////////
+		//清空原有数据
+		\DB::update("update users set 成绩排序='' where 项目=?", [$项目名称]);
+		$sortFun = $cfgScore->成绩排序;
+		$rs = User::where('项目', $项目名称)->get();
+		foreach ($rs as $row) {
+			if (strlen($row->原始成绩)) {
+				$rawScores = unserialize($row->原始成绩);
+				$row->成绩排序 = Sort::$sortFun($rawScores[0],$rawScores[1]);
+				$row->save();
 			}
 		}
 	}
+
 
 	/**
 	 * @param $item 项目
@@ -74,85 +70,46 @@ abstract class Calc
 			}
 		} // foreach users as user
 
-		//将排名为0（没有成绩）的数据的排名设置为999999,以便排序时排在最后，在显示时需处理好后再显示
-		\DB::update("update users set 排名='999999' where 项目=? and 组别=? and 排名='0'", [$item, $group]);
 	} //排名
-
-
-	public function 生成成绩册()
-	{
-		$arrItems = SysConfig::items();
-		$objExcel = new Excel();
-		foreach ($arrItems as $item) {
-			SysConfig::setItem($item);
-			$arrGroups = SysConfig::itemGroups($item);
-			$orderByGroup = "'" . join("','", $arrGroups) . "'";
-			$users = User:: whereRaw(
-				"项目=? order by  FIELD(组别, $orderByGroup), 排名, 编号 ",
-				[$item]
-			)->get();
-
-				$config = [
-					'templateFile' => SysConfig::template('成绩册'),
-					'sheetName' => str_replace(',', '', SysConfig::item('表名')),
-					'firstDataRowNum' => SysConfig::item('首条数据行号'),
-					'data' => $this->处理成绩册数据($users),
-				];
-				$objExcel->setConfig($config);
-				$objExcel->make();
-
-				//页眉、页脚
-				$objExcel->sheet->getHeaderFooter()->setOddHeader('&C&"黑体,常规"&16 ' . config('my.比赛名称') . "&\"宋体,常规\"&14 成绩册");
-				$objExcel->sheet->getHeaderFooter()->setOddFooter('&C&P/&N页');
-
-				//打印到一页
-				$objExcel->printInOnePage();
-			}//foreach items as item
-
-			$objExcel->save(SysConfig::saveExcelDir() . utf8ToGbk("/成绩册.xlsx"));
-	}//生成成绩册
-
+	
 	/**
-	 * 处理“生成成绩册()”里的数据
-	 * @param $users
-	 * @return mixed
+	 * 根据比例设定各个组的奖项，要先计算出排名才能使用该方法
+	 * @param $item 项目
+	 * @param $group 组别
+	 * @param $jiangxiangAndBili 奖项及比例 按从高到底排列 例（一、二、三等奖比例分别为10%、20%、30% ）：array('一等奖'=>'0.1', '二等奖'=>'0.2', '三等奖'=>'0.3')
 	 */
-	protected function 处理成绩册数据($users)
+	public function 奖项($item, $group, $jiangxiangAndBili)
 	{
-		//循环
-		foreach ($users as $k => $user) {
-			//处理没有排名的数据
-			if ($user->排名 == 999999) {
-				$user->排名 = '';
+		//清空本项目、本组别的奖项值
+		\DB::update("update users set 奖项='' WHERE 项目=? and 组别=?", [$item, $group]);
+		//本项目、本组别总人数
+		$userCount = User::where('项目', $item)
+			->where('组别', $group)
+			->where('成绩排序','!=','')
+			->count();
+		//当某个项目还没有导入任何成绩时，$userCount的值为0,而$thisUserCount至少为1,下面的for循环中读取$users[$i]会超出下标造成错误
+		if ($userCount == 0) return;
+
+		foreach ($jiangxiangAndBili as $jiangxiang=>$bili) { //$bili比例，$jiangxiang奖项
+			$users = User::whereRaw("项目=? and 组别=? and 奖项='' order by if(排名='',1,0), abs(排名)", [$item, $group])->get();
+			$thisUserCount = round($bili * $userCount);//本奖项的人数 四舍五入
+			//如果该组总人数特别少（如：3人），一等奖（10%）计算出来的人数可能等于0，这时就要调整为1人
+			$thisUserCount = $thisUserCount > 0 ? $thisUserCount : 1;
+
+			for ($i = 0; $i < $thisUserCount; $i++) {
+				$user = $users[$i];
+				$user->奖项 = $jiangxiang;
+				$user->save();
+				
+				$thisItemGroupUserSort = $user->排名;//本项目、组别、奖项的最后一个用户的排名
 			}
-			$users[$k]=$user;
+
+			//处理与本奖项最后一人排名相同人的奖项，应该与之相同（并列）。
+			\DB::update("update users set 奖项=? WHERE 项目=? and  组别=? and 排名=?",
+				[$jiangxiang, $item, $group, $thisItemGroupUserSort]);
 		}
-		return $users;
 	}
+	
 
-
-	/**
-	 * 产生一个供打印证书使用的获奖名单：个人、单项团体、综合团体
-	 */
-	public function 生成获奖名单()
-	{
-		$users = User::where('奖项','<>',"")
-					->orderBy('单位')
-					->orderBy('项目')
-					->orderBy('组别')
-					->orderBy('排名')
-					->get();
-
-		$config = [
-			'templateFile' => SysConfig::template('获奖名单_打印'),
-			'sheetName' => '个人',
-			'firstDataRowNum' => 2,
-			'data' => $users,
-		];
-		$objExcel = new Excel();
-		$objExcel->setConfig($config);
-		$objExcel->make();
-		$objExcel->save(SysConfig::saveExcelDir() . utf8ToGbk("/获奖名单_打印.xlsx"));
-	}
 
 }//class

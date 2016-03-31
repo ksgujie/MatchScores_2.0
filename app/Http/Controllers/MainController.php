@@ -77,7 +77,8 @@ class MainController extends Controller {
 
 	public function getIndex()
 	{
-		return view('welcome');
+		$items = array_keys(matchConfig('项目'));
+		return view('welcome')->with('items', $items);
 	}
 	
 
