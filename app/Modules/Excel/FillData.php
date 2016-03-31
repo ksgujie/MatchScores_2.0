@@ -1,6 +1,6 @@
 <?php namespace App\Modules\Excel;
 
-class Excel extends Base {
+class FillData extends Base {
 
 	//excel对象
 	public $objExcel;

@@ -1,6 +1,6 @@
 <?php namespace App\Http\Controllers;
 
-use App\Modules\Excel\Excel;
+use App\Modules\Excel\FillData;
 use App\Modules\Excel\Template;
 use App\Modules\MatchConfig\Item;
 use App\User;
@@ -102,12 +102,14 @@ class ActionController extends Controller {
 
 	public function 生成裁判用表()
 	{
+		//检测文件是否已经存在
+		$savefile=gbk(matchConfig('路径.工作目录').'/裁判用表.xls');
+		$this->checkFileExist($savefile);
+
 		$objTemplateExcel = Template::生成裁判用表模板(gbk(matchConfig('路径.工作目录').'/模板/裁判用表模板.xls'));
 		$arrItems = matchConfig('裁判用表');
-//		dd($arrItems);
-		$objExcel = new Excel();
+		$objExcel = new FillData();
 		foreach ($arrItems as $itemName => $item) {
-//			dd($item);////////////////
 			$data = User::where('项目', $itemName)->orderBy('编号')->get();
 			$config = [
 //				'objExcel'=>$objTemplateExcel,
@@ -138,7 +140,137 @@ class ActionController extends Controller {
 			$objExcel->printInOnePage();
 		}
 		//保存
-		$objExcel->save(gbk(matchConfig('路径.工作目录').'/裁判用表.xls'));
+		$objExcel->save($savefile);
+	}
+	
+	public function 生成成绩录入表()
+	{
+		//保存文件
+		$savefile=gbk(matchConfig('路径.工作目录').'/成绩录入.xls');
+		//检测是否存在
+		$this->checkFileExist($savefile);
+
+		$tplfile = gbk(matchConfig('路径.工作目录').'/模板/成绩录入模板.xls');
+		//生成模板文件
+		Template::生成成绩录入表模板($tplfile);
+
+		$items = matchConfig('项目');
+		$objExcel = new FillData();
+		foreach ($items as $itemName => $item) {
+			$objItem = new Item($itemName);
+			$data = User::where('项目', $itemName)->orderBy('编号')->get();
+			$config = [
+//				'objExcel'=>$objTemplateExcel,
+				'templateFile'=>$tplfile,
+				'sheetName'=>$item['表名'],
+				'firstDataRowNum'=>3,
+				'data'=>$data,
+			];
+//			dd($config);
+			$objExcel->setConfig($config);
+			$objExcel->make();
+		}
+
+		//保存
+		$objExcel->save($savefile);
+	}
+
+	public function 成绩导入()
+	{
+		//清空原有成绩
+		\DB::update("update users set 原始成绩='', 成绩备注=''");
+
+		$filename = gbk(matchConfig('路径.工作目录').'/成绩录入.xls');
+		$objExcel = \PHPExcel_IOFactory::load( $filename );
+		$arrItems = matchConfig('项目');
+		foreach ($arrItems as $itemName => $item) {
+			$objItem = new Item($itemName);
+			$objSheet = $objExcel->getSheetByName($objItem->表名);
+			//所有数据
+			$arrRows=$objSheet->toArray(null,true,false,false);
+			//获取firstDataRowNum,如果A2单元格里有数字就取此值，否则就取值3 （这个功能暂时取消）
+//			$A2 = (int)trim($arrRows[0][0]);
+//			$firstDataRowNum = $A2>0 ? $A2 : 3;
+			$firstDataRowNum = 3;
+			//第一行数据（定位成绩在哪几列）
+			$firstRow = array_map('trim', $arrRows[0]);
+			//记录成绩所在的列数 例：$arrScoreCol[1]=2，1是“成绩1”,2是所在列数（列数从0开始计数）
+			$arrScoreCol=[];
+			//记录成绩备注所在的列数 例: $arrMarkCol[1]=2，1是备注1，2是所在列数（列数从0开始计数）
+			$arrMarkCol=[];
+			for ($i = 1; $i < count($firstRow); $i++) {
+				$cellValue = trim($firstRow[$i]);
+				if (preg_match('/^\d+$/', $cellValue)) {//成绩
+					$arrScoreCol[$cellValue] = $i;
+				} elseif (preg_match('/^备注(\d+)$/i', $cellValue, $_array)) {//备注
+					$arrMarkCol[$_array[1]] = $i;
+				}
+			}
+
+			//确定编号所在列
+			$row = $arrRows[$firstDataRowNum-2];
+			for ($i = 0; $i < count($row); $i++) {
+				if (trim($row[$i]) == '编号') {
+					$serialNumberColNum=$i;
+				}
+			}
+
+			//按行循环
+			for ($i = $firstDataRowNum-1; $i < count($arrRows); $i++) {
+				$row = array_map('trim', $arrRows[$i]);
+				$User = User::where('编号', $row[$serialNumberColNum])->first();
+				if (!$User) {
+					pp("数据库中没有这个编号：".$row[$serialNumberColNum]);
+					pp($arrRows);
+					exit();
+				}
+//				pp($arrScoreCol);/////////////////////
+
+				///////////// 开始：匹配成绩 ////////////
+				$arrScores = [];//将所有原始成绩保存在此
+				$allScoresIsEmpty = true; //成绩是否全部为空
+				foreach ($arrScoreCol as $scoreNum => $colNum) {
+					$_score = trim($row[$colNum]);
+					//检测成绩是否为空
+					if (strlen($_score)) {
+						$allScoresIsEmpty = false;
+					}
+					$arrScores[] = $_score;
+				}
+
+				//判断所有成绩是否为空，有一个不是空值就保存
+				if (!$allScoresIsEmpty) {
+					$User->原始成绩 = serialize($arrScores);
+				}
+				///////////// 结束：匹配成绩 ////////////
+
+				////////////// 开始：匹配备注////////////
+				$arrMarks = [];//保存备注
+				$allMarksIsEmpty = true;//成绩备注是否全部为空
+				foreach ($arrMarkCol as $markNum => $colNum) {
+					$_mark = trim($row[$colNum]);
+					//检测备注是否为空
+					if (strlen($_mark)) {
+						$allMarksIsEmpty = false;
+					}
+					$arrMarks[] = $_mark;
+				}
+
+				//判断所有备注是否为空，有一个不是空值就保存
+				if (!$allMarksIsEmpty) {
+					$User->成绩备注 = serialize($arrMarks);
+				}
+				////////////// 结束：匹配备注 ////////////
+
+				//判断成绩、备注是否为空，有一个不为空就要保存
+				if (!$allScoresIsEmpty || !$allMarksIsEmpty) {
+					$User->save();
+				}
+
+			}
+
+		}
+
 	}
 
 	public function 自定义导入()

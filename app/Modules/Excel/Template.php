@@ -1,4 +1,5 @@
 <?php namespace App\Modules\Excel;
+use App\Modules\MatchConfig\Item;
 use Illuminate\Support\Facades\Cache;
 
 /**
@@ -17,21 +18,21 @@ class Template extends Base {
 	{
 		$matchConfig = \App\Modules\MatchConfig\Config::read();
 //		pd($matchConfig);///////////////////////////////////////////////
-		self::$objExcel = \PHPExcel_IOFactory::load(gbk(configFilePath(Cache::get('配置文件'))));
+		$objExcel = \PHPExcel_IOFactory::load(gbk(configFilePath(Cache::get('配置文件'))));
 		//隐藏所有已有表格，模板也被隐藏掉了，需要判断一下并取消隐藏
-		foreach (self::$objExcel->getWorksheetIterator() as $_sheet) {
+		foreach ($objExcel->getWorksheetIterator() as $_sheet) {
 			$_sheet->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_HIDDEN);
 		}
 		//复制“裁判用表”，用于复制格式
-		$objSheetConfig = self::$objExcel->getSheetByName('裁判用表');
+		$objSheetConfig = $objExcel->getSheetByName('裁判用表');
 
 		foreach ($matchConfig['裁判用表'] as $item=>$itemConfig) {
 //			检查表格在配置文件中是否存在，如果存在就该表取消隐藏，否则新建一个
-			$objSheet = self::$objExcel->getSheetByName($itemConfig['表名']);
+			$objSheet = $objExcel->getSheetByName($itemConfig['表名']);
 			if ($objSheet != null) {
 				$objSheet->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_VISIBLE);
 			} else {
-				$objSheet = self::$objExcel->createSheet();
+				$objSheet = $objExcel->createSheet();
 				$objSheet->setTitle($itemConfig['表名']);	//设置表名
 				$objSheet->getTabColor()->setRGB('000000');	//设置标签颜色
 				//设置标题行（第一行）、首条数据行（第二行）
@@ -70,28 +71,37 @@ class Template extends Base {
 
 		//save
 		if ($saveFile!=null) {
-			$objWriter = new \PHPExcel_Writer_Excel5(self::$objExcel);
+			$objWriter = new \PHPExcel_Writer_Excel5($objExcel);
 			$objWriter->save($saveFile);
 		}
 
-		return self::$objExcel;
+		return $objExcel;
 	}
 
 
-	public static function 生成成绩录入表()
+	public static function 生成成绩录入表模板($saveFile = null)
 	{
-		$file = gbk(matchConfig('全局.工作目录').'/导入/成绩录入.xls');
-		self::checkFile($file);
+		$objExcel = \PHPExcel_IOFactory::load(gbk(base_path('通用模板/成绩录入.xls')));
+		$objSheet = $objExcel->getSheetByName('模板');
 
-		//////////////////生成录入模板表///////////////
-		
-
-	}
-
-	public static function checkFile($file)
-	{
-		if (is_file($file)) {
-			dd(utf8($file) . " 已经存在，无法覆盖生成！");
+		$items = matchConfig('项目');
+		foreach ($items as $itemName => $item) {
+			$objItem = new Item($itemName);
+			$newSheet = clone $objSheet;
+			$newSheet->setTitle($objItem->表名);
+			$newSheet->getTabColor()->setRGB('000000');	//设置标签颜色
+			$newSheet->setCellValue('A1', $itemName);//设置项目名称
+			$objExcel->addSheet($newSheet);
 		}
+		//隐藏模板表
+		$objSheet->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_HIDDEN);
+		//save
+		if ($saveFile!=null) {
+			$objWriter = new \PHPExcel_Writer_Excel5($objExcel);
+			$objWriter->save($saveFile);
+		}
+		return $objExcel;
 	}
+
+
 }

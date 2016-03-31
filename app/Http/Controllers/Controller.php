@@ -92,7 +92,14 @@ class Controller extends BaseController
         return $config;
     }
 */
-
+    
+    public static function checkFileExist($file)
+    {
+        if (is_file($file)) {
+            dd(utf8($file) . " 已经存在，无法覆盖生成！");
+        }
+    }
+    
     public function runnedTime()
     {
         return microtime(true) - LARAVEL_START;
