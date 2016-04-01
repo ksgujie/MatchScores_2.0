@@ -88,4 +88,31 @@ class Style {
 			),
 		),
 	];
+
+
+	public static $成绩册_项目名称 = [
+		'font' => array(
+			'bold' => true,
+			'size' => 18,
+		),
+
+		'alignment' => array(
+			'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+			'wrap'=>false,
+		),
+	];
+
+	public static $成绩册_标题 = [
+		'font' => array(
+			'bold' => false,
+			'size' => 11,
+		),
+
+		'alignment' => array(
+			'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
+			'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
+			'wrap'=>true,
+		),
+	];
 }

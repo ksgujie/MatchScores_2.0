@@ -53,7 +53,7 @@ class MainController extends Controller {
 		//设置数据库名
 		config(['database.connections.mysql.database' => matchConfig('全局.数据库')]);
 
-		$workDir = matchConfig('路径.工作目录');
+		$workDir = matchConfig('全局.工作目录');
 		//如果工作目录已经存在，就停止初始化
 		if (is_dir(gbk($workDir))) {
 			return;

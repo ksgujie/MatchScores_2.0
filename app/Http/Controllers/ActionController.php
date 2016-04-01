@@ -16,7 +16,7 @@ class ActionController extends Controller {
 
 	public function 导入报名数据()
 	{
-		$filename = matchConfig('路径.工作目录') . '/导入/报名数据导入.xls';
+		$filename = matchConfig('全局.工作目录') . '/导入/报名数据导入.xls';
 		$filename = gbk($filename);
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
 		$objSheet = $objExcel->getActiveSheet();
@@ -89,7 +89,7 @@ class ActionController extends Controller {
 
 				$n=1;
 				foreach ($Users as $user) {
-					$编号 = matchConfig("项目.$item.表名") . $this->lerrers[$j] . sprintf("%03d", $n);
+					$编号 = matchConfig("项目.$item.表名") . $this->letters[$j] . sprintf("%03d", $n);
 
 					$user->编号 = $编号;
 					$a=$user->save();
@@ -103,17 +103,19 @@ class ActionController extends Controller {
 	public function 生成裁判用表()
 	{
 		//检测文件是否已经存在
-		$savefile=gbk(matchConfig('路径.工作目录').'/裁判用表.xls');
+		$savefile=gbk(matchConfig('全局.工作目录').'/裁判用表.xls');
 		$this->checkFileExist($savefile);
 
-		$objTemplateExcel = Template::生成裁判用表模板(gbk(matchConfig('路径.工作目录').'/模板/裁判用表模板.xls'));
+//		Template::生成裁判用表模板(gbk(matchConfig('全局.工作目录').'/模板/裁判用表模板.xls'));
+		Template::根据参数生成表格('裁判用表', gbk(matchConfig('全局.工作目录').'/模板/裁判用表模板.xls'));
+
 		$arrItems = matchConfig('裁判用表');
 		$objExcel = new FillData();
 		foreach ($arrItems as $itemName => $item) {
 			$data = User::where('项目', $itemName)->orderBy('编号')->get();
 			$config = [
 //				'objExcel'=>$objTemplateExcel,
-				'templateFile'=>gbk(matchConfig('路径.工作目录').'/模板/裁判用表模板.xls'),
+				'templateFile'=>gbk(matchConfig('全局.工作目录').'/模板/裁判用表模板.xls'),
 				'sheetName'=>$item['表名'],
 				'firstDataRowNum'=>$item['首条数据行号'],
 				'data'=>$data,
@@ -125,11 +127,11 @@ class ActionController extends Controller {
 			//设置分页
 			$objExcel->insertPageBreak('分组');
 			//页眉、页脚
-			$objExcel->objSheet->getHeaderFooter()->setOddHeader('&C&"黑体,常规"&16 '. matchConfig('全局.比赛名称') . "\n&\"宋体,常规\"&14（{$itemName}）" );
+			$objExcel->objSheet->getHeaderFooter()->setOddHeader('&L&"宋体,常规"&14 '. matchConfig('全局.比赛名称') . '　成绩记录表' . "&C&\"微软雅黑,常规\"&18\n{$itemName}" );
 			$objExcel->objSheet->getHeaderFooter()->setOddFooter( '&L&P/&N页&R裁判员签名_______________ 项目裁判长签名_______________');
 			//面边距
 			$objExcel->objSheet->getPageMargins()->setHeader(0.3);
-			$objExcel->objSheet->getPageMargins()->setTop(0.85);
+			$objExcel->objSheet->getPageMargins()->setTop(0.98);
 			$objExcel->objSheet->getPageMargins()->setFooter(0.2);
 			$objExcel->objSheet->getPageMargins()->setBottom(0.5);
 			$objExcel->objSheet->getPageMargins()->setLeft(0.2);
@@ -147,11 +149,11 @@ class ActionController extends Controller {
 	public function 生成成绩录入表()
 	{
 		//保存文件
-		$savefile=gbk(matchConfig('路径.工作目录').'/成绩录入.xls');
+		$savefile=gbk(matchConfig('全局.工作目录').'/成绩录入.xls');
 		//检测是否存在
 		$this->checkFileExist($savefile);
 
-		$tplfile = gbk(matchConfig('路径.工作目录').'/模板/成绩录入模板.xls');
+		$tplfile = gbk(matchConfig('全局.工作目录').'/模板/成绩录入模板.xls');
 		//生成模板文件
 		Template::生成成绩录入表模板($tplfile);
 
@@ -181,7 +183,7 @@ class ActionController extends Controller {
 		//清空原有成绩
 		\DB::update("update users set 原始成绩='', 成绩备注=''");
 
-		$filename = gbk(matchConfig('路径.工作目录').'/成绩录入.xls');
+		$filename = gbk(matchConfig('全局.工作目录').'/成绩录入.xls');
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
 		$arrItems = matchConfig('项目');
 		foreach ($arrItems as $itemName => $item) {
@@ -275,7 +277,7 @@ class ActionController extends Controller {
 
 	public function 自定义导入()
 	{
-		$filename = matchConfig('路径.工作目录') . '/导入/自定义导入.xls';
+		$filename = matchConfig('全局.工作目录') . '/导入/自定义导入.xls';
 		$filename = gbk($filename);
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
 		$objSheet = $objExcel->getSheetByName('导入');
