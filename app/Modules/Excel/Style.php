@@ -61,18 +61,18 @@ class Style {
 			'bold' => true,
 		),
 	];
-
+	
 	public static $标题 = [
 		'font' => array(
 			'bold' => true,
 		),
-
+		
 		'alignment' => array(
 			'horizontal' => \PHPExcel_Style_Alignment::HORIZONTAL_CENTER,
 			'vertical' => \PHPExcel_Style_Alignment::VERTICAL_CENTER,
 			'wrap'=>true,
 		),
-
+		
 		'borders' => array(
 			'top' => array(
 				'style' => \PHPExcel_Style_Border::BORDER_THIN,
@@ -88,8 +88,17 @@ class Style {
 			),
 		),
 	];
-
-
+	
+	
+	public static $上边框 = [
+		'borders' => array(
+			'top' => array(
+				'style' => \PHPExcel_Style_Border::BORDER_THIN,
+			),
+		),
+	];
+	
+	
 	public static $成绩册_项目名称 = [
 		'font' => array(
 			'bold' => true,

@@ -2,6 +2,7 @@
 
 use App\User;
 use App\Modules\MatchConfig\Score;
+use PhpParser\Node\Stmt\ElseIf_;
 
 class Calc
 {
@@ -20,7 +21,15 @@ class Calc
 		foreach ($rs as $row) {
 			if (strlen($row->原始成绩)) {
 				$rawScores = unserialize($row->原始成绩);
-				$row->成绩排序 = Sort::$sortFun($rawScores[0],$rawScores[1]);
+				//判断原始成绩的数量。这里只做了最多三个原始成绩，一般也够用了
+				if (1==count($rawScores)) {
+					$row->成绩排序 = Sort::$sortFun($rawScores[0]);
+				} elseif (2==count($rawScores)) {
+					$row->成绩排序 = Sort::$sortFun($rawScores[0], $rawScores[1]);
+				} elseif (3==count($rawScores)) {
+					$row->成绩排序 = Sort::$sortFun($rawScores[0], $rawScores[1], $rawScores[2]);
+				}
+				
 				$row->save();
 			}
 		}
@@ -39,11 +48,12 @@ class Calc
 
 		$orderBy = $orderType == '降序' ? 'desc' : 'asc';
 
-		$users = User::where('项目', $item)
-			->where('组别', $group)
-			->where('成绩排序', '!=', '')
-			->orderBy('成绩排序', $orderBy)
-			->get();
+		$users = User::whereRaw("项目=? and 组别=? and (成绩排序!='' or 成绩备注!='') order by if(成绩排序='',1,0) asc,  成绩排序 $orderBy", [$item, $group])->get();
+//		$users = User::where('项目', $item)
+//			->where('组别', $group)
+//			->where('成绩排序', '!=', '')
+//			->orderBy('成绩排序', $orderBy)
+//			->get();
 		//上一个排名
 		$lastRank = 0;
 		//上一个成绩（最后生成用于排名的）
@@ -92,15 +102,16 @@ class Calc
 
 		foreach ($jiangxiangAndBili as $jiangxiang=>$bili) { //$bili比例，$jiangxiang奖项
 			$users = User::whereRaw("项目=? and 组别=? and 奖项='' order by if(排名='',1,0), abs(排名)", [$item, $group])->get();
-			$thisUserCount = round($bili * $userCount);//本奖项的人数 四舍五入
+			//本奖项的人数 四舍五入
+			$thisUserCount = round($bili * $userCount);
 			//如果该组总人数特别少（如：3人），一等奖（10%）计算出来的人数可能等于0，这时就要调整为1人
 			$thisUserCount = $thisUserCount > 0 ? $thisUserCount : 1;
 
 			for ($i = 0; $i < $thisUserCount; $i++) {
 				$user = $users[$i];
 				$user->奖项 = $jiangxiang;
+				//（判断一下，有排名的才有奖项）暂时取消该功能
 				$user->save();
-				
 				$thisItemGroupUserSort = $user->排名;//本项目、组别、奖项的最后一个用户的排名
 			}
 

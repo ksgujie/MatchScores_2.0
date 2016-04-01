@@ -53,83 +53,77 @@ class ScoreController extends Controller {
 
 	public function 生成成绩册()
 	{
-		$tplFile = gbk(matchConfig('全局.工作目录').'/模板/成绩册模板.xls');
-
-		$a=\PHPExcel_IOFactory::load($tplFile);
-		$b=\PHPExcel_IOFactory::load('g:/b.xls');
-		$sheetA=$a->getSheetByName('A1');
-		$sheetB=$b->getSheetByName('b');
-		$xls=new \PHPExcel();
-		$xls->addSheet(clone $sheetA);
-		$xls->addSheet(clone $sheetB);
-		$w = new \PHPExcel_Writer_Excel5($xls);
-		$w->save('g:/c.xls');
-die;//////////////
-		$tplFile = gbk(matchConfig('全局.工作目录').'/模板/成绩册模板.xls');
-		$objTplExcel = \PHPExcel_IOFactory::load($tplFile);//模板文件对象
-		$objNewExcel = new \PHPExcel();
-		$objNewExcel->addSheet(clone $objTplExcel->getSheetByName('A1'));
-		$w=new \PHPExcel_Writer_Excel5($objNewExcel);
-		$w->save('g:/a.xls');die;
-		die();/////////////////////////////////////////
+		//生成模板
 		Template::生成成绩册模板();
-
 		//定义要使用到的变量、对象
 		$tplFile = gbk(matchConfig('全局.工作目录').'/模板/成绩册模板.xls');
-		$objTplExcel = \PHPExcel_IOFactory::load($tplFile);//模板文件对象
+		$objExcel = \PHPExcel_IOFactory::load($tplFile);//模板文件对象
 		$arrItems = matchConfig('项目');
 		$arrManual = matchConfig('成绩册');
-		$objNewExcel = new \PHPExcel();
 		$objFillData = new FillData();
-		
+
 		//开始按项目循环处理
 		foreach ($arrItems as $itemName => $itemConfig) {
 			$objItem = new Item($itemName);
-			dump($objItem);
 			$n=0;//计数
 			//按组别循环
 			foreach ($objItem->组别 as $group) {
-				dump($group);
 				//算出表名，克隆、添加新表
 				$groupLetter = $this->letters[$n];
 				$newSheetName = $objItem->表名 .  $groupLetter;
-				$objNewSheet = clone $objTplExcel->getSheetByName($objItem->表名);
-				dump($objNewSheet);
-//				$objNewSheet->setTitle($newSheetName);
-				$objNewExcel->addSheet($objNewSheet);
-
-				$w=new \PHPExcel_Writer_Excel5($objNewExcel);
-				$w->save('g:/a.xls');die;
+				$objNewSheet = clone $objExcel->getSheetByName($objItem->表名);
+				$objNewSheet->setTitle($newSheetName);
+				$objExcel->addSheet($objNewSheet);
 
 				//读取并填充数据入新表
-				$users = User::where('项目', $itemName)->where('组别', $group)->orderby('排名')->orderby('编号')->get();
+//				$users = User::where('项目', $itemName)->where('组别', $group)->orderby('排名')->orderby('编号')->get();
+				$users = User::whereRaw("项目=? and 组别=? order by if(排名='',1,0), abs(排名), 编号", [$itemName, $group])->get();
+				//循环，处理“成绩1、成绩2、备注1、备注2……”
+				foreach ($users as $_k => $_u) {
+					$rawScores = [];
+					if (strlen($_u->原始成绩)) {
+						$rawScores = unserialize($_u->原始成绩);
+					}
+					$marks = [];
+					if (strlen($_u->成绩备注)) {
+						$marks = unserialize($_u->成绩备注);
+					}
+					for ($i = 0; $i < 20; $i++) {
+						//成绩
+						$scoreField = "成绩" . ($i+1);
+						$_u->$scoreField = isset($rawScores[$i]) ? $rawScores[$i] : null;
+						//成绩备注
+						$markField = '备注' . ($i+1);
+						$_u->$markField = isset($marks[$i]) ? $marks[$i] : null;
+
+						$users[$_k] = $_u;
+					}
+				}
 //					$users = User:: whereRaw("项目=?, 组别=? order by 排名, 编号 ", [$itemName, $group])->get();
 				$config = [
-					'objExcel' => $objNewExcel,
+					'objExcel' => $objExcel,
 					'sheetName' => $newSheetName,
 					'firstDataRowNum' => 3,
 					'data' => $users,
 				];
-				dump($config);
 				$objFillData->setConfig($config);
 				$objFillData->make();
 				//读取、填充项目名称（A1）、级别（An）
-				$groupColIndex = $objNewExcel->getSheetByName($newSheetName)->getCell('A1')->getValue();
-				$objNewExcel->getSheetByName($newSheetName)->getCellByColumnAndRow($groupColIndex, 1)->setValue($group);
-				$objNewExcel->getSheetByName($newSheetName)->getCell('A1')->setValue($itemName);
+				$groupColIndex = $objExcel->getSheetByName($newSheetName)->getCell('A1')->getValue();
+				$objExcel->getSheetByName($newSheetName)->getCellByColumnAndRow($groupColIndex, 1)->setValue($group);
+				$objExcel->getSheetByName($newSheetName)->getCell('A1')->setValue($itemName);
+
 				//
 				$n++;
 			}//foreach
+
+			//隐藏模板表
+			$objExcel->getSheetByName($objItem->表名)->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_HIDDEN);
 		}
 
 
 /**
-			//页眉、页脚
-			$objExcel->sheet->getHeaderFooter()->setOddHeader('&C&"黑体,常规"&16 ' . config('my.比赛名称') . "&\"宋体,常规\"&14 成绩册");
-			$objExcel->sheet->getHeaderFooter()->setOddFooter('&C&P/&N页');
 
-			//打印到一页
-			$objExcel->printInOnePage();
 		}//foreach items as item
 **/
 		$objFillData->save(gbk(matchConfig('全局.工作目录').'/成绩册.xls'));

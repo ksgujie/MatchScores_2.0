@@ -145,7 +145,7 @@ class Template extends Base {
 				$A1->setValue($colIndex-1);//将最大列号的索引值保存在此，以方便填充数据时确定组别单元格的位置
 				$A1->getStyle()->applyFromArray(Style::$成绩册_项目名称);
 				$A1->getStyle()->applyFromArray(Style::$左对齐);
-				$objSheet->getRowDimension(1)->setRowHeight(30);	//行高
+				$objSheet->getRowDimension(1)->setRowHeight(50);	//行高
 
 
 				//设置组别
@@ -153,8 +153,26 @@ class Template extends Base {
 				$Ax->setValue('小学组');
 				$Ax->getStyle()->applyFromArray(Style::$成绩册_项目名称);
 				$Ax->getStyle()->applyFromArray(Style::$右对齐);
+				//设置第一行的上边框线
+				for ($i = 0; $i < $colIndex; $i++) {
+					$cell = $objSheet->getCellByColumnAndRow($i, 1);
+					$cell->getStyle()->applyFromArray(Style::$上边框);
+				}
 			}
-		}
+			//面边距
+			$objSheet->getPageMargins()->setHeader(0.4);
+			$objSheet->getPageMargins()->setTop(0.6);
+			$objSheet->getPageMargins()->setFooter(0.2);
+			$objSheet->getPageMargins()->setBottom(0.5);
+			$objSheet->getPageMargins()->setLeft(0.3);
+			$objSheet->getPageMargins()->setRight(0.3);
+			//页眉、页脚
+//			$objSheet->getHeaderFooter()->setOddHeader('&L&"宋体,常规"&10' . matchConfig('全局.比赛名称') . '&R&"宋体,常规"&10 ' . matchConfig('全局.时间地点'));
+			$objSheet->getHeaderFooter()->setOddHeader('&L' . matchConfig('全局.比赛名称') . '&R' . matchConfig('全局.时间地点'));
+			$objSheet->getHeaderFooter()->setOddFooter('&C&P/&N页');
+			//打印到一页
+			$objSheet->getPageSetup()->setFitToWidth(1)->setFitToHeight(0);
+		}//foreach
 
 		//save
 		$objWriter = new \PHPExcel_Writer_Excel5($objExcel);

@@ -4,9 +4,14 @@ use App\Modules\Score\Show;
 
 class Sort
 {
-	public static function 原始成绩($s)
+	/**
+	 * @param $score1
+	 * @param null $score2 这是一个无用参数，Calc::填充排序字段()里调用时默认是两个参数，这里只放一个参数会出错
+	 * @return mixed
+	 */
+	public static function 一轮比大小($score)
 	{
-		return $s;
+		return $score;
 	}
 	/**
 	 * 先比最高轮得分，得分高者排前，最高得分相同的再看第二轮得分，两轮成绩相同的，再看最高得分轮的用时长，用时长的排前
