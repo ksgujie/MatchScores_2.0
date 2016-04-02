@@ -302,5 +302,83 @@ class ActionController extends Controller {
 		}
 	}
 
+	/**
+	 * 比赛完后有学生姓名不正确的
+	 */
+	public function 更改姓名()
+	{
+		$file = gbk(matchConfig('全局.工作目录').'/导入/更改姓名.xls');
+		$objExcel = \PHPExcel_IOFactory::load( $file );
+		$objSheet = $objExcel->getActiveSheet();
+		$arrData=$objSheet->toArray();
+		for ($i = 1; $i < count($arrData); $i++) {
+			$编号 = trim($arrData[$i][0]);
+			$姓名 = trim($arrData[$i][1]);
+			$user = User::where('编号',$编号)->first();
+			if (!$user) {
+				exit($编号 . '未找到 ');
+			}
+			$user->姓名 = $姓名;
+			$user->save();
+
+		}
+	}
+
+	public function 添加名单()
+	{
+		$file = gbk(matchConfig('全局.工作目录').'/导入/添加名单.xls');
+		$objExcel = \PHPExcel_IOFactory::load( $file );
+		$objSheet = $objExcel->getActiveSheet();
+		$arrData=$objSheet->toArray();
+		if (1==count($arrData)) {
+			exit('文件中没有数据啊！！');
+		}
+		for ($i = 1; $i < count($arrData); $i++) {
+			$data=[
+				'参赛队'=>$arrData[$i][0],
+				'姓名'=>$arrData[$i][1],
+				'项目'=>$arrData[$i][2],
+				'组别'=>$arrData[$i][3],
+				'教练'=>$arrData[$i][4],
+			];
+			$data = array_map('trim', $data);
+			$unimports = [];
+			if (!strlen($data['参赛队']) || !strlen($data['姓名']) || !strlen($data['项目']) || !strlen($data['组别'])) {
+				$unimports[] = $data;
+			}
+
+			$data['编号']=$this->新编号($data['项目'], $data['组别']);
+			User::create($data);
+			//保存以显示结果
+			echo '<h1>以下名单添加成功</h1>';
+			echo $data['编号']."\t".$data['姓名']."<br>";
+		}
+
+		$time = date("Y-m-d H:i:s");
+		rename($file, gbk(matchConfig('全局.工作目录')."/导入/添加名单（已添加{$time}）.xls"));
+		copy(gbk(base_path('/通用模板/添加名单.xls')), gbk(matchConfig('全局.工作目录').'/导入/添加名单.xls'));
+		
+		exit;
+	}
+
+	public function 新编号($item, $group)
+	{
+		$user = User::where('项目', $item)
+			->where('组别', $group)
+			->orderBy('编号','desc')
+			->first();
+		if (!$user) {
+			dump($item);
+			dump($group);
+			exit("错误：请检查EXCEL文件中的项目、组别是否正确。");
+		}
+
+		$编号 = $user->编号;
+		preg_match('/(\d+)$/', $编号, $arr);
+		$num=(int)$arr[1] + 1;
+		$prefix = preg_replace('/\d+$/', '', $编号);
+		return $prefix.sprintf('%03d', $num);
+	}
+
 
 }

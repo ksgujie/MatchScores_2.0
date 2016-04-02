@@ -120,12 +120,8 @@ class ScoreController extends Controller {
 			//隐藏模板表
 			$objExcel->getSheetByName($objItem->表名)->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_HIDDEN);
 		}
-
-
-/**
-
-		}//foreach items as item
-**/
+		//显示封面
+		$objExcel->getSheetByName('成绩册封面')->setSheetState();
 		$objFillData->save(gbk(matchConfig('全局.工作目录').'/成绩册.xls'));
 	}//生成成绩册
 
