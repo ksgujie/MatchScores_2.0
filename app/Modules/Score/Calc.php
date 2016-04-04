@@ -118,7 +118,20 @@ class Calc
 			//处理与本奖项最后一人排名相同人的奖项，应该与之相同（并列）。
 			\DB::update("update users set 奖项=? WHERE 项目=? and  组别=? and 排名=?",
 				[$jiangxiang, $item, $group, $thisItemGroupUserSort]);
+
+			//计算已有获奖人数，不得超过总获奖人数（主要针对人数特别少的项目，如3－6人的）
+			$应获奖比例 = (int)(array_sum($jiangxiangAndBili) * 10);	//这里是：应获奖比例*10，再取整，忽略小数位
+			$已获奖人数 = User::whereRaw("项目=? and 组别=? and 奖项!=''", [$item, $group])->count();
+			$已获奖比例 = (int)($已获奖人数/$userCount * 10);
+
+//			echo $已获奖比例.'/'.$应获奖比例 .'=' . $已获奖比例/$应获奖比例 . '<br>';//////////////////////
+			if ($已获奖比例 >= $应获奖比例) {
+//				die('结束');
+				break;
+			}
 		}
+		//将原始成绩为空的奖项清除，防止大量未完成（排名都是并列的）的人也能获奖，虽然这样的情况很少出现
+		\DB::update("update users set 奖项='' where 原始成绩=''");
 	}
 	
 

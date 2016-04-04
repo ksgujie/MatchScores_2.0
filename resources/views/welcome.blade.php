@@ -17,15 +17,15 @@
                 <li> {!! Html::link('action/生成成绩录入表', '生成成绩录入表') !!} </li>
                 <li> {!! Html::link('action/成绩导入', '成绩导入') !!} </li>
                 <li> {!! Html::link('score/计算成绩', '计算成绩') !!} </li>
-                    <ol>
-                        @foreach($items as $item)
-                            <li> {!! Html::link('score/calc/?'.$item, $item) !!} </li>
-                        @endforeach
-                    </ol>
-                <li> {!! Html::link('score/优秀辅导员', '计算优秀辅导员') !!} </li>
+                <li> {!! Html::link('score/计算综合团体', '计算综合团体') !!} </li>
+                    {{--<ol>--}}
+                        {{--@foreach($items as $item)--}}
+                            {{--<li> {!! Html::link('score/calc/?'.$item, $item) !!} </li>--}}
+                        {{--@endforeach--}}
+                    {{--</ol>--}}
+                <li> {!! Html::link('score/优秀辅导员名单', '优秀辅导员名单') !!} </li>
                 <li> {!! Html::link('score/生成获奖名单', '生成获奖名单（打印）') !!} </li>
                 <li> {!! Html::link('score/生成综合团体成绩表', '生成综合团体成绩表（打印）') !!} </li>
-                <li> {!! Html::link('score/生成优秀辅导员表', '生成优秀辅导员表（打印）') !!} </li>
                 <li>生成综合团体成绩表（用于打印奖状）</li>
                 <li>生成优秀辅导员表（用于打印奖状）</li>
                 <li> {!! Html::link('score/生成成绩册', '生成成绩册') !!} </li>
@@ -57,6 +57,9 @@
                 <li> {!! Html::link('action/添加名单', '导入[添加名单]') !!} </li>
                 <li> {!! Html::link('action/自定义导入', '导入[自定义数值]') !!} </li>
             </ol>
+
+             {!! Html::link('action/临时', '临时') !!}
+
         </td>
         <td>
 

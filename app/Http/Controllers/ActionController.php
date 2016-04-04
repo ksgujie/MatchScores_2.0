@@ -3,6 +3,7 @@
 use App\Modules\Excel\FillData;
 use App\Modules\Excel\Template;
 use App\Modules\MatchConfig\Item;
+use App\Modules\Score\Show;
 use App\User;
 use Illuminate\Support\Facades\Session;
 
@@ -12,6 +13,30 @@ class ActionController extends Controller {
 	{
 		$this->$do();
 		return redirect('main/index')->with('message', date("Y-m-d H:i:s")."完成：$do \n耗时：". $this->runnedTime());
+	}
+	
+	public function 临时()
+	{
+		for ($ii = 1; $ii <= 7; $ii++) {
+
+			$objExcel = \PHPExcel_IOFactory::load("g:/{$ii}-1.csv");
+			$objSheet = $objExcel->getActiveSheet();
+			$arr=$objSheet->toArray();
+			for ($i = 1; $i < count($arr); $i++) {
+				$row = $arr[$i];
+				$time = $row[4];
+				if ($time != '-.---') {
+					$time = str_replace([':','.'], '', $time);
+					$time = preg_replace('/\d$/', '', $time);
+					$r[]=[$row[11], (int)$row[3] . Show::补零($time, 6)];
+				} else {
+					$r[]=[$row[11], ''];
+				}
+			}
+		}
+
+		arrayToExcel($r, 'g:/aaaaa.xls', 1);
+		die;////////
 	}
 
 	public function 导入报名数据()
@@ -343,16 +368,18 @@ class ActionController extends Controller {
 			];
 			$data = array_map('trim', $data);
 			$unimports = [];
-			if (!strlen($data['参赛队']) || !strlen($data['姓名']) || !strlen($data['项目']) || !strlen($data['组别'])) {
+			if (!strlen($data['姓名']) || !strlen($data['项目']) || !strlen($data['组别'])) {
 				$unimports[] = $data;
 			}
 
 			$data['编号']=$this->新编号($data['项目'], $data['组别']);
 			User::create($data);
 			//保存以显示结果
-			echo '<h1>以下名单添加成功</h1>';
-			echo $data['编号']."\t".$data['姓名']."<br>";
+			echo '成功：\t'.$data['编号']."\t".$data['姓名']."<br>";
 		}
+
+		echo '以下名单添加不成功，姓名、项目、组别必须填写完整：';
+		dump($unimports);
 
 		$time = date("Y-m-d H:i:s");
 		rename($file, gbk(matchConfig('全局.工作目录')."/导入/添加名单（已添加{$time}）.xls"));

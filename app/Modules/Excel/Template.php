@@ -169,7 +169,7 @@ class Template extends Base {
 			//页眉、页脚
 //			$objSheet->getHeaderFooter()->setOddHeader('&L&"宋体,常规"&10' . matchConfig('全局.比赛名称') . '&R&"宋体,常规"&10 ' . matchConfig('全局.时间地点'));
 			$objSheet->getHeaderFooter()->setOddHeader('&L' . matchConfig('全局.比赛名称') . '&R' . matchConfig('全局.时间地点'));
-			$objSheet->getHeaderFooter()->setOddFooter('&C&P/&N页');
+			$objSheet->getHeaderFooter()->setOddFooter('&LPage:&P/&N');
 			//打印到一页
 			$objSheet->getPageSetup()->setFitToWidth(1)->setFitToHeight(0);
 		}//foreach

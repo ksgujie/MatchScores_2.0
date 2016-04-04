@@ -11,7 +11,7 @@ class Sort
 	 */
 	public static function 一轮比大小($score)
 	{
-		return $score;
+		return Show::补零($score);
 	}
 	/**
 	 * 先比最高轮得分，得分高者排前，最高得分相同的再看第二轮得分，两轮成绩相同的，再看最高得分轮的用时长，用时长的排前

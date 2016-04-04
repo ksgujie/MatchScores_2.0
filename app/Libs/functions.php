@@ -1,4 +1,20 @@
 <?php
+/**
+ * @param $arrData 二维数组
+ * @param $saveFile 保存的文件名
+ * @param bool $overWriteExistFile 是否覆盖已存在的文件
+ * @throws PHPExcel_Exception
+ */
+function arrayToExcel($arrData, $saveFile, $overWriteExistFile = false) {
+	$objExcel = new PHPExcel();
+	$objSheet = $objExcel->getActiveSheet();
+	$objSheet->fromArray($arrData);
+	$w = new \PHPExcel_Writer_Excel5($objExcel);
+	if (!$overWriteExistFile && file_exists($saveFile)) {
+		exit($saveFile.' 文件已经存在，不能覆盖生成！');
+	}
+	$w->save($saveFile);
+}
 
 function utf8($s) {
 	if (is_string($s)) {

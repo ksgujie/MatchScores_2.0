@@ -2,13 +2,20 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48c3a23d-40b8-4373-9128-701948fd3bca" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/通用模板/添加名单.xls" afterPath="$PROJECT_DIR$/通用模板/添加名单.xls" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Modules/Score/ScoreKKKKKKK.php" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/通用模板/检录.xlsx" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/通用模板/成绩录入.xls" afterPath="$PROJECT_DIR$/通用模板/成绩录入.xls" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/配置文件/2016昆山车模.xls" afterPath="$PROJECT_DIR$/配置文件/2016昆山车模.xls" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/MatchConfig/Score.php" afterPath="$PROJECT_DIR$/app/Modules/MatchConfig/Score.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libs/functions.php" afterPath="$PROJECT_DIR$/app/Libs/functions.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Excel/Template.php" afterPath="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Score/Calc.php" afterPath="$PROJECT_DIR$/app/Modules/Score/Calc.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Score/Sort.php" afterPath="$PROJECT_DIR$/app/Modules/Score/Sort.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
     </list>
     <ignored path="MatchScores_2.0.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -33,11 +40,44 @@
       <file leaf-file-name="ScoreController.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ScoreController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="648">
-              <caret line="117" column="13" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+            <state relative-caret-position="435">
+              <caret line="94" column="39" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
               <folding>
                 <element signature="e#39#70#0#PHP" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="User.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/User.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="783">
+              <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="297">
+              <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+              <folding>
+                <marker date="1459738496164" expanded="true" signature="2281:2316" placeholder="update users... " />
+                <marker date="1459738496164" expanded="true" signature="5375:5408" placeholder="update users... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="functions.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Libs/functions.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="351">
+              <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -52,24 +92,14 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Style.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Style.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2619">
-              <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Template.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3942">
-              <caret line="147" column="61" selection-start-line="147" selection-start-column="61" selection-end-line="147" selection-end-column="61" />
+            <state relative-caret-position="261">
+              <caret line="171" column="71" selection-start-line="171" selection-start-column="71" selection-end-line="171" selection-end-column="71" />
               <folding>
                 <element signature="e#36#69#0#PHP" expanded="true" />
-                <element signature="e#6758#9122#0#PHP" expanded="false" />
+                <element signature="e#6762#9126#0#PHP" expanded="false" />
               </folding>
             </state>
           </provider>
@@ -78,13 +108,30 @@
       <file leaf-file-name="Calc.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2970">
-              <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
+            <state relative-caret-position="3510">
+              <caret line="132" column="57" selection-start-line="132" selection-start-column="57" selection-end-line="132" selection-end-column="57" />
               <folding>
-                <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-                <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-                <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-                <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
+                <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+                <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+                <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+                <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+                <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Base.php" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Modules/Score/Base.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="10719">
+              <caret line="401" column="24" selection-start-line="401" selection-start-column="19" selection-end-line="401" selection-end-column="24" />
+              <folding>
+                <marker date="1459429709003" expanded="true" signature="268:328" placeholder="update users... " />
+                <marker date="1459429709003" expanded="true" signature="1800:1827" placeholder="update group... " />
+                <marker date="1459429709003" expanded="true" signature="2557:2594" placeholder="update group... " />
+                <marker date="1459429709003" expanded="true" signature="5160:5202" placeholder="update users... " />
+                <marker date="1459429709003" expanded="true" signature="6331:6358" placeholder="update group... " />
               </folding>
             </state>
           </provider>
@@ -93,28 +140,8 @@
       <file leaf-file-name="Sort.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Modules/Score/Sort.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2916">
-              <caret line="108" column="40" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Score.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/MatchConfig/Score.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="189">
-              <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FillData.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/Excel/FillData.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="5346">
-              <caret line="198" column="39" selection-start-line="198" selection-start-column="0" selection-end-line="204" selection-end-column="41" />
+            <state relative-caret-position="4104">
+              <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -129,15 +156,17 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/app/Http/Controllers/MainController.php" />
-        <option value="$PROJECT_DIR$/app/Http/routes.php" />
-        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
         <option value="$PROJECT_DIR$/app/Modules/MatchConfig/Config.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
         <option value="$PROJECT_DIR$/app/Modules/Excel/Style.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Score/Calc.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Score/Sort.php" />
         <option value="$PROJECT_DIR$/app/Modules/MatchConfig/Score.php" />
+        <option value="$PROJECT_DIR$/app/Http/routes.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Score/Sort.php" />
+        <option value="$PROJECT_DIR$/app/User.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Score/Calc.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
+        <option value="$PROJECT_DIR$/resources/views/welcome.blade.php" />
+        <option value="$PROJECT_DIR$/app/Libs/functions.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" />
       </list>
@@ -194,11 +223,11 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane />
       </pane>
-      <pane id="Scope" />
+      <pane id="Scratches" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -208,6 +237,7 @@
     <property name="settings.editor.selected.configurable" value="reference.settingsdialog.IDE.editor.colors.Language Defaults" />
     <property name="settings.editor.splitter.proportion" value="0.2" />
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="SearchEverywhereHistoryKey" value="function.php&#9;FILE&#9;file://D:/wwwroot/MatchScores_2.0/app/Libs/functions.php" />
   </component>
   <component name="RunManager">
     <configuration default="true" type="JavascriptDebugType" factoryName="JavaScript Debug">
@@ -262,11 +292,13 @@
       <workItem from="1459557761795" duration="4388000" />
       <workItem from="1459609995173" duration="863000" />
       <workItem from="1459611000550" duration="874000" />
+      <workItem from="1459677946850" duration="13538000" />
+      <workItem from="1459734774656" duration="4778000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39848000" />
+    <option name="totallyTimeSpent" value="58164000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -308,32 +340,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Modules/MatchConfig/Score.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/FillData.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="5346">
-          <caret line="198" column="39" selection-start-line="198" selection-start-column="0" selection-end-line="204" selection-end-column="41" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ScoreController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1080">
-          <caret line="46" column="20" selection-start-line="46" selection-start-column="20" selection-end-line="46" selection-end-column="20" />
-          <folding>
-            <element signature="e#39#70#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -355,7 +361,7 @@
           <caret line="147" column="61" selection-start-line="147" selection-start-column="61" selection-end-line="147" selection-end-column="61" />
           <folding>
             <element signature="e#36#69#0#PHP" expanded="true" />
-            <element signature="e#6758#9122#0#PHP" expanded="false" />
+            <element signature="e#6762#9126#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -365,10 +371,11 @@
         <state relative-caret-position="2970">
           <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
           <folding>
-            <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -428,7 +435,7 @@
           <caret line="147" column="61" selection-start-line="147" selection-start-column="61" selection-end-line="147" selection-end-column="61" />
           <folding>
             <element signature="e#36#69#0#PHP" expanded="true" />
-            <element signature="e#6758#9122#0#PHP" expanded="false" />
+            <element signature="e#6762#9126#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -438,10 +445,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -478,7 +486,7 @@
           <caret line="160" column="67" selection-start-line="160" selection-start-column="25" selection-end-line="160" selection-end-column="68" />
           <folding>
             <element signature="e#36#69#0#PHP" expanded="true" />
-            <element signature="e#6758#9122#0#PHP" expanded="false" />
+            <element signature="e#6762#9126#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -504,10 +512,11 @@
         <state relative-caret-position="2112">
           <caret line="89" column="91" selection-start-line="89" selection-start-column="91" selection-end-line="89" selection-end-column="91" />
           <folding>
-            <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -535,7 +544,7 @@
           <caret line="160" column="67" selection-start-line="160" selection-start-column="25" selection-end-line="160" selection-end-column="68" />
           <folding>
             <element signature="e#36#69#0#PHP" expanded="true" />
-            <element signature="e#6758#9122#0#PHP" expanded="false" />
+            <element signature="e#6762#9126#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -561,10 +570,11 @@
         <state relative-caret-position="1672">
           <caret line="89" column="91" selection-start-line="89" selection-start-column="91" selection-end-line="89" selection-end-column="91" />
           <folding>
-            <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -592,7 +602,7 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#36#69#0#PHP" expanded="true" />
-            <element signature="e#6758#9122#0#PHP" expanded="false" />
+            <element signature="e#6762#9126#0#PHP" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -617,10 +627,11 @@
         <state relative-caret-position="2200">
           <caret line="89" column="91" selection-start-line="89" selection-start-column="91" selection-end-line="89" selection-end-column="91" />
           <folding>
-            <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -633,27 +644,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/Score/InterfaceScore.php" />
-    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Base.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="216">
-          <caret line="17" column="46" selection-start-line="17" selection-start-column="46" selection-end-line="17" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Libs/PHPExcel/PHPExcel/Style.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="258">
@@ -683,50 +673,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Style.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2619">
-          <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3942">
-          <caret line="147" column="61" selection-start-line="147" selection-start-column="61" selection-end-line="147" selection-end-column="61" />
-          <folding>
-            <element signature="e#36#69#0#PHP" expanded="true" />
-            <element signature="e#6758#9122#0#PHP" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2970">
-          <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
-          <folding>
-            <marker date="1459530930723" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459530930723" expanded="true" signature="3236:3287" placeholder="update users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Sort.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2916">
-          <caret line="108" column="40" selection-start-line="108" selection-start-column="40" selection-end-line="108" selection-end-column="40" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/MatchConfig/Score.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/routes.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="17" column="44" selection-start-line="17" selection-start-column="42" selection-end-line="17" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Style.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-270">
+          <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/User.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="783">
+          <caret line="29" column="18" selection-start-line="29" selection-start-column="18" selection-end-line="29" selection-end-column="18" />
           <folding />
         </state>
       </provider>
@@ -739,17 +712,91 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Score.bak">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2282">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="261">
+          <caret line="171" column="71" selection-start-line="171" selection-start-column="71" selection-end-line="171" selection-end-column="71" />
+          <folding>
+            <element signature="e#36#69#0#PHP" expanded="true" />
+            <element signature="e#6762#9126#0#PHP" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3510">
+          <caret line="132" column="57" selection-start-line="132" selection-start-column="57" selection-end-line="132" selection-end-column="57" />
+          <folding>
+            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Base.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10719">
+          <caret line="401" column="24" selection-start-line="401" selection-start-column="19" selection-end-line="401" selection-end-column="24" />
+          <folding>
+            <marker date="1459429709003" expanded="true" signature="268:328" placeholder="update users... " />
+            <marker date="1459429709003" expanded="true" signature="1800:1827" placeholder="update group... " />
+            <marker date="1459429709003" expanded="true" signature="2557:2594" placeholder="update group... " />
+            <marker date="1459429709003" expanded="true" signature="5160:5202" placeholder="update users... " />
+            <marker date="1459429709003" expanded="true" signature="6331:6358" placeholder="update group... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Sort.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4104">
+          <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="60" column="44" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libs/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="351">
+          <caret line="13" column="42" selection-start-line="13" selection-start-column="42" selection-end-line="13" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="358" column="67" selection-start-line="358" selection-start-column="67" selection-end-line="358" selection-end-column="67" />
+        <state relative-caret-position="297">
+          <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
+          <folding>
+            <marker date="1459738496164" expanded="true" signature="2281:2316" placeholder="update users... " />
+            <marker date="1459738496164" expanded="true" signature="5375:5408" placeholder="update users... " />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ScoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="648">
-          <caret line="117" column="13" selection-start-line="117" selection-start-column="13" selection-end-line="117" selection-end-column="13" />
+        <state relative-caret-position="435">
+          <caret line="94" column="39" selection-start-line="94" selection-start-column="39" selection-end-line="94" selection-end-column="39" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
           </folding>

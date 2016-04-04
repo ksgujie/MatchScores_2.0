@@ -32,23 +32,67 @@ class ScoreController extends Controller {
 //
 ////		$this->_计算成绩('1/10遥控电动越野竞速赛');
 //	}
-	
+
+	/**
+	 * 个人成绩
+	 */
 	public function 计算成绩()
 	{
-		$项目名称=urldecode($_SERVER['QUERY_STRING']);
+		$items = array_keys(matchConfig('项目'));
+		foreach ($items as $项目名称) {
+//			$项目名称='1/10遥控电动房车竞速赛';///////用于测试单项成绩//////
+			$cfgItem	= new Item($项目名称);
+			$cfgScore	= new Score($项目名称);
 
-		$cfgItem	= new Item($项目名称);
-		$cfgScore	= new Score($项目名称);
-		
-		$calc = new Calc();
-		$calc->填充排序字段($项目名称);
-		
-		foreach ($cfgItem->组别 as $group) {
-			$calc->单项排名($项目名称, $group, $cfgScore->排序方式);
-			$calc->奖项($项目名称, $group, $cfgScore->获奖比例);
+			$calc = new Calc();
+			$calc->填充排序字段($项目名称);
+
+			foreach ($cfgItem->组别 as $group) {
+//				$group = '中学';//////////////////////用于测试单项成绩////////
+				$calc->单项排名($项目名称, $group, $cfgScore->排序方式);
+				$calc->奖项($项目名称, $group, $cfgScore->获奖比例);
+//				die;//////////////////////////////////用于测试单项成绩////////
+			}
+		}
+//		return redirect('main/index')->with('message', $项目名称 . ' 计算完成');
+	}
+
+	/**
+	 * 2016昆山车模。A/B两组中各取排名最好一个相加
+	 */
+	public function 计算综合团体()
+	{
+		$groupA = ['1/10遥控电动越野竞速赛','1/10遥控电动房车竞速赛','1/16遥控电动越野、大脚车竞速赛','1/16遥控电动房车竞速赛','1/18遥控电动车竞速赛','1/28遥控电动房车竞速赛'];
+		$groupB = ['“闪电冲线教育特供”竞速赛','电动四驱车拼装赛','风动车直线竞速赛','车辆模型电脑模拟赛'];
+		$schools = User::所有参赛队();
+		$result = [];
+		foreach ($schools as $school) {
+			//A组最好排名
+			$whereIn = "('" . join("','", $groupA) . "')";
+			$user = User::whereRaw("参赛队=? and 项目 in $whereIn and 排名!='' order by abs(排名)", [$school])->first();
+			if ($user) {
+				$result[$school]['A'] = $user;
+			}
+			//Ｂ组最好排名
+			$whereIn = "('" . join("','", $groupB) . "')";
+			$user = User::whereRaw("参赛队=? and 项目 in $whereIn and 排名!='' order by abs(排名)", [$school])->first();
+			if ($user) {
+				$result[$school]['B'] = $user;
+			}
 		}
 
-		return redirect('main/index')->with('message', $项目名称 . ' 计算完成');
+		foreach ($result as $school => $schoolScores) {
+			$r=[];
+			if (isset($schoolScores['A']) && isset($schoolScores['B'])) {
+				$r[]=  $school;
+				$r[]=  $schoolScores['A']->项目;
+				$r[]=  $schoolScores['A']->排名;
+				$r[]=  $schoolScores['B']->项目;
+				$r[]=  $schoolScores['B']->排名;
+				$rr[]=$r;
+			}
+		}
+		arrayToExcel($rr, 'g:/tt.xls',9);
 	}
 
 	public function 生成成绩册()
@@ -131,23 +175,79 @@ class ScoreController extends Controller {
 	 */
 	public function 生成获奖名单()
 	{
-		$users = User::where('奖项','<>',"")
-			->orderBy('单位')
+		$users = User::where('奖项','!=',"")
+			->orderBy('参赛队')
 			->orderBy('项目')
 			->orderBy('组别')
 			->orderBy('排名')
 			->get();
-
+		$users = User::whereRaw("奖项!='' order by 参赛队,项目,组别,abs(排名)")->get();
 		$config = [
-			'templateFile' => SysConfig::template('获奖名单_打印'),
+			'templateFile' => gbk(base_path('通用模板/获奖名单.xls')),
 			'sheetName' => '个人',
 			'firstDataRowNum' => 2,
 			'data' => $users,
 		];
-		$objExcel = new Excel();
+		$objExcel = new FillData();
 		$objExcel->setConfig($config);
 		$objExcel->make();
-		$objExcel->save(SysConfig::saveExcelDir() . utf8ToGbk("/获奖名单_打印.xlsx"));
+		$objExcel->save(gbk(matchConfig('全局.工作目录')."/获奖名单.xls"));
+	}
+	
+	public function 优秀辅导员名单()
+	{
+		$schools='昆山市周庄中学
+昆山市玉峰实验学校
+昆山市娄江实验学校（初中部）
+昆山市葛江中学
+昆山市城北高科园中心小学
+昆山市大市中心小学校
+昆山市费俊龙中学（初中部）
+昆山国际学校
+昆山市陆家镇菉溪小学
+昆山开发区青阳港学校（初中部）
+昆山市兵希中学
+昆山市花桥中心小学校
+昆山市娄江实验学校（小学部）
+昆山市柏庐实验小学
+昆山市南港中心小学校
+昆山高新区吴淞江学校（初中部）
+昆山市周市镇永平小学
+昆山市培本实验小学
+昆山市周市华城美地小学
+昆山市正仪中心小学校
+昆山市淀山湖中心小学校
+昆山开发区青阳港学校（小学部）
+昆山市玉山镇司徒街小学
+昆山市锦溪中心小学校
+昆山高新区吴淞江学校（小学部）
+昆山市张浦中心小学校
+昆山开发区世茂蝶湖湾小学
+昆山市实验小学
+昆山开发区晨曦小学';
+		$schools = explode("\n",$schools);
+		echo "参赛队\t教练\t项目\t组别\t学生\t排名\t奖项\n";
+		foreach ($schools as $school) {
+			$school=trim($school);
+			$users = User::where('参赛队', $school)->get();
+			foreach ($users as $user) {
+				$teachers = trim($user->教练);
+				$teachers = preg_split('/[\s]+/', $teachers);
+				foreach ($teachers as $teacher) {
+					echo "$school\t$teacher\n";
+//					$r[$teacher]='';
+//					$r[$teacher][]=$school;
+//					$r[$teacher][]=$teacher;
+//					$r[$teacher]=$user->项目;
+//					$r[$teacher]=$user->组别;
+//					$r[$teacher]=$user->姓名;
+//					$r[$teacher]=$user->排名;
+//					$r[$teacher]=$user->奖项;
+				}
+//				echo "\n";
+			}
+		}
+		die;
 	}
 
 }
