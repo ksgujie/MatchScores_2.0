@@ -15,8 +15,12 @@ class Config {
 		}
 		
 		$config = [];//保存结果
-
-		$objExcel = \PHPExcel_IOFactory::load(gbk(configFilePath(Cache::get('配置文件'))));
+		$configFile = configFilePath(Cache::get('配置文件'));
+		$gbk_configFile = gbk(configFile);
+		//判断一下文件是否存在，如果不存在就跳转到选择配置文件的页面。有些情况下可能会造成缓存错误，导致找不到配置文件。
+		if (!is_file($gbk_configFile)) return redirect('main/select');	
+		
+		$objExcel = \PHPExcel_IOFactory::load($gbk_configFile);
 		//只有：名称、值 两项的表
 		$arrSheets = ['全局'];
 		foreach ($arrSheets as $sheetName) {
