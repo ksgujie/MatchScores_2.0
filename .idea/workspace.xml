@@ -1,22 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48c3a23d-40b8-4373-9128-701948fd3bca" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/app/Modules/Score/ScoreKKKKKKK.php" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/通用模板/检录.xlsx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/通用模板/成绩录入.xls" afterPath="$PROJECT_DIR$/通用模板/成绩录入.xls" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/配置文件/2016昆山车模.xls" afterPath="$PROJECT_DIR$/配置文件/2016昆山车模.xls" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/routes.php" afterPath="$PROJECT_DIR$/app/Http/routes.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Libs/functions.php" afterPath="$PROJECT_DIR$/app/Libs/functions.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Excel/Template.php" afterPath="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Score/Calc.php" afterPath="$PROJECT_DIR$/app/Modules/Score/Calc.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Score/Sort.php" afterPath="$PROJECT_DIR$/app/Modules/Score/Sort.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/User.php" afterPath="$PROJECT_DIR$/app/User.php" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/resources/views/welcome.blade.php" afterPath="$PROJECT_DIR$/resources/views/welcome.blade.php" />
-    </list>
+    <list default="true" id="48c3a23d-40b8-4373-9128-701948fd3bca" name="Default" comment="" />
     <ignored path="MatchScores_2.0.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -62,11 +47,11 @@
       <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="297">
+            <state relative-caret-position="378">
               <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
               <folding>
-                <marker date="1459738496164" expanded="true" signature="2281:2316" placeholder="update users... " />
-                <marker date="1459738496164" expanded="true" signature="5375:5408" placeholder="update users... " />
+                <marker date="1460170172985" expanded="true" signature="2281:2316" placeholder="update users... " />
+                <marker date="1460170172985" expanded="true" signature="5375:5408" placeholder="update users... " />
               </folding>
             </state>
           </provider>
@@ -95,7 +80,7 @@
       <file leaf-file-name="Template.php" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
+            <state relative-caret-position="4590">
               <caret line="171" column="71" selection-start-line="171" selection-start-column="71" selection-end-line="171" selection-end-column="71" />
               <folding>
                 <element signature="e#36#69#0#PHP" expanded="true" />
@@ -111,11 +96,11 @@
             <state relative-caret-position="3510">
               <caret line="132" column="57" selection-start-line="132" selection-start-column="57" selection-end-line="132" selection-end-column="57" />
               <folding>
-                <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-                <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-                <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-                <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-                <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+                <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+                <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+                <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+                <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+                <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
               </folding>
             </state>
           </provider>
@@ -127,11 +112,11 @@
             <state relative-caret-position="10719">
               <caret line="401" column="24" selection-start-line="401" selection-start-column="19" selection-end-line="401" selection-end-column="24" />
               <folding>
-                <marker date="1459429709003" expanded="true" signature="268:328" placeholder="update users... " />
-                <marker date="1459429709003" expanded="true" signature="1800:1827" placeholder="update group... " />
-                <marker date="1459429709003" expanded="true" signature="2557:2594" placeholder="update group... " />
-                <marker date="1459429709003" expanded="true" signature="5160:5202" placeholder="update users... " />
-                <marker date="1459429709003" expanded="true" signature="6331:6358" placeholder="update group... " />
+                <marker date="1460170173094" expanded="true" signature="268:328" placeholder="update users... " />
+                <marker date="1460170173094" expanded="true" signature="1800:1827" placeholder="update group... " />
+                <marker date="1460170173094" expanded="true" signature="2557:2594" placeholder="update group... " />
+                <marker date="1460170173094" expanded="true" signature="5160:5202" placeholder="update users... " />
+                <marker date="1460170173094" expanded="true" signature="6331:6358" placeholder="update group... " />
               </folding>
             </state>
           </provider>
@@ -209,7 +194,7 @@
     <ConfirmationsSetting value="0" id="Remove" />
   </component>
   <component name="ProjectView">
-    <navigator currentView="ProjectPane" proportions="" version="1">
+    <navigator proportions="" version="1">
       <flattenPackages />
       <showMembers />
       <showModules />
@@ -222,13 +207,7 @@
       <manualOrder />
       <foldersAlwaysOnTop value="true" />
     </navigator>
-    <panes>
-      <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane />
-      </pane>
-      <pane id="Scratches" />
-    </panes>
+    <panes />
   </component>
   <component name="PropertiesComponent">
     <property name="options.lastSelected" value="File.Encoding" />
@@ -294,11 +273,12 @@
       <workItem from="1459611000550" duration="874000" />
       <workItem from="1459677946850" duration="13538000" />
       <workItem from="1459734774656" duration="4778000" />
+      <workItem from="1461163271276" duration="114000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="58164000" />
+    <option name="totallyTimeSpent" value="58278000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -351,7 +331,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2619">
           <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -371,11 +350,11 @@
         <state relative-caret-position="2970">
           <caret line="112" column="40" selection-start-line="112" selection-start-column="40" selection-end-line="112" selection-end-column="40" />
           <folding>
-            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -425,7 +404,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2619">
           <caret line="97" column="10" selection-start-line="97" selection-start-column="10" selection-end-line="97" selection-end-column="10" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -445,11 +423,11 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -495,7 +473,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2280">
           <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -512,11 +489,11 @@
         <state relative-caret-position="2112">
           <caret line="89" column="91" selection-start-line="89" selection-start-column="91" selection-end-line="89" selection-end-column="91" />
           <folding>
-            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -553,7 +530,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1805">
           <caret line="95" column="25" selection-start-line="95" selection-start-column="25" selection-end-line="95" selection-end-column="25" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -570,11 +546,11 @@
         <state relative-caret-position="1672">
           <caret line="89" column="91" selection-start-line="89" selection-start-column="91" selection-end-line="89" selection-end-column="91" />
           <folding>
-            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -627,11 +603,11 @@
         <state relative-caret-position="2200">
           <caret line="89" column="91" selection-start-line="89" selection-start-column="91" selection-end-line="89" selection-end-column="91" />
           <folding>
-            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -692,7 +668,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-270">
           <caret line="62" column="6" selection-start-line="62" selection-start-column="6" selection-end-line="62" selection-end-column="6" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -721,7 +696,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
+        <state relative-caret-position="4590">
           <caret line="171" column="71" selection-start-line="171" selection-start-column="71" selection-end-line="171" selection-end-column="71" />
           <folding>
             <element signature="e#36#69#0#PHP" expanded="true" />
@@ -735,11 +710,11 @@
         <state relative-caret-position="3510">
           <caret line="132" column="57" selection-start-line="132" selection-start-column="57" selection-end-line="132" selection-end-column="57" />
           <folding>
-            <marker date="1459695116728" expanded="true" signature="315:350" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="1088:1130" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="2300:2342" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3236:3287" placeholder="update users... " />
-            <marker date="1459695116728" expanded="true" signature="3813:3849" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="315:350" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="1088:1130" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="2300:2342" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3236:3287" placeholder="update users... " />
+            <marker date="1460170173110" expanded="true" signature="3813:3849" placeholder="update users... " />
           </folding>
         </state>
       </provider>
@@ -749,11 +724,11 @@
         <state relative-caret-position="10719">
           <caret line="401" column="24" selection-start-line="401" selection-start-column="19" selection-end-line="401" selection-end-column="24" />
           <folding>
-            <marker date="1459429709003" expanded="true" signature="268:328" placeholder="update users... " />
-            <marker date="1459429709003" expanded="true" signature="1800:1827" placeholder="update group... " />
-            <marker date="1459429709003" expanded="true" signature="2557:2594" placeholder="update group... " />
-            <marker date="1459429709003" expanded="true" signature="5160:5202" placeholder="update users... " />
-            <marker date="1459429709003" expanded="true" signature="6331:6358" placeholder="update group... " />
+            <marker date="1460170173094" expanded="true" signature="268:328" placeholder="update users... " />
+            <marker date="1460170173094" expanded="true" signature="1800:1827" placeholder="update group... " />
+            <marker date="1460170173094" expanded="true" signature="2557:2594" placeholder="update group... " />
+            <marker date="1460170173094" expanded="true" signature="5160:5202" placeholder="update users... " />
+            <marker date="1460170173094" expanded="true" signature="6331:6358" placeholder="update group... " />
           </folding>
         </state>
       </provider>
@@ -770,7 +745,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="60" column="44" selection-start-line="60" selection-start-column="42" selection-end-line="60" selection-end-column="44" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -784,11 +758,11 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="297">
+        <state relative-caret-position="378">
           <caret line="19" column="28" selection-start-line="19" selection-start-column="28" selection-end-line="19" selection-end-column="28" />
           <folding>
-            <marker date="1459738496164" expanded="true" signature="2281:2316" placeholder="update users... " />
-            <marker date="1459738496164" expanded="true" signature="5375:5408" placeholder="update users... " />
+            <marker date="1460170172985" expanded="true" signature="2281:2316" placeholder="update users... " />
+            <marker date="1460170172985" expanded="true" signature="5375:5408" placeholder="update users... " />
           </folding>
         </state>
       </provider>
