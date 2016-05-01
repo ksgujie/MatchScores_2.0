@@ -226,7 +226,7 @@ class ScoreController extends Controller {
 昆山市实验小学
 昆山开发区晨曦小学';
 		$schools = explode("\n",$schools);
-		echo "参赛队\t教练\t项目\t组别\t学生\t排名\t奖项\n";
+		$r[] = ["参赛队", "教练", "项目", "组别", "学生", "排名", "奖项"];
 		foreach ($schools as $school) {
 			$school=trim($school);
 			$users = User::where('参赛队', $school)->get();
@@ -234,7 +234,7 @@ class ScoreController extends Controller {
 				$teachers = trim($user->教练);
 				$teachers = preg_split('/[\s]+/', $teachers);
 				foreach ($teachers as $teacher) {
-					echo "$school\t$teacher\n";
+					$r[]=[ "$school","$teacher\n"];
 //					$r[$teacher]='';
 //					$r[$teacher][]=$school;
 //					$r[$teacher][]=$teacher;
@@ -247,6 +247,7 @@ class ScoreController extends Controller {
 //				echo "\n";
 			}
 		}
+		arrayToExcel($r, 'g:/tt.xlsx', 1);
 		die;
 	}
 

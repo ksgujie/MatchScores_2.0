@@ -27,12 +27,12 @@ class User extends Model
     
 	protected $guarded = [];
 
-    public static function 所有参赛队()
+    public static function 鎵�鏈夊弬璧涢槦()
     {
         $users = User::all();
         $r=[];
         foreach ($users as $user) {
-            $r[$user->参赛队]='';
+            $r[$user->鍙傝禌闃焆='';
         }
         return array_keys($r);
     }
