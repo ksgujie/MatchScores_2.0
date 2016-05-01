@@ -1,1 +1,0 @@
-mysqldump -uroot --databases 2016kscm > D:\WWWRoot\MatchScores_2.0\2016kscm.sql
