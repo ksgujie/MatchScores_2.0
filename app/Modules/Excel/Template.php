@@ -173,8 +173,8 @@ class Template extends Base {
 			//$objSheet->getHeaderFooter()->setOddHeader('&L' . matchConfig('全局.比赛名称') . '&R' . matchConfig('全局.时间地点'));
 			$objSheet->getHeaderFooter()->setOddFooter('&LPage:&P/&N');
 			//面边距
-			$objSheet->getPageMargins()->setHeader(0.5);
-			$objSheet->getPageMargins()->setTop(0.5);
+			$objSheet->getPageMargins()->setHeader(0.4);
+			$objSheet->getPageMargins()->setTop(0.4);
 			$objSheet->getPageMargins()->setFooter(0.2);
 			$objSheet->getPageMargins()->setBottom(0.5);
 			$objSheet->getPageMargins()->setLeft(0.3);
