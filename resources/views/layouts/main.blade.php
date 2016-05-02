@@ -13,7 +13,7 @@
 		<td style="width: 200px">
 			<h1>计分 v2</h1>
 		</td>
-		<td>
+		<td valign="middle">
 			{{ str_ireplace('.xlsx', '', Cache::get('配置文件','')) }} {{ Html::link('main/select', '更改') }}
 		</td>
 	</tr>
