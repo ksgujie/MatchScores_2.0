@@ -7,8 +7,18 @@
     <script href="{{ asset('/js/bootstrap.min.css') }}"></script>
 </head>
 <body>
-<h1>科技模型竞赛计分系统 V2</h1>
 
+<table border="0">
+	<tr>
+		<td style="width: 200px">
+			<h1>计分 v2</h1>
+		</td>
+		<td>
+			{{ str_ireplace('.xlsx', '', Cache::get('配置文件','')) }} {{ Html::link('main/select', '更改') }}
+		</td>
+	</tr>
+</table>
+		
 @include('_message')
 	
 @yield('content')
