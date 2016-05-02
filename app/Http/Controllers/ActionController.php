@@ -12,7 +12,9 @@ class ActionController extends Controller {
 	public function run($do)
 	{
 		$this->$do();
-		return redirect('main/index')->with('message', date("Y-m-d H:i:s")."完成：$do \n耗时：". $this->runnedTime());
+		return redirect('main/index')
+			->with('action', $do)
+			->with('timeout', $this->runnedTime());
 	}
 	
 	public function 临时()

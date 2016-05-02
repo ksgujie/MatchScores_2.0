@@ -33,21 +33,7 @@
             </ol>
         </td>
         <td align="center" valign="top" width="300">
-
-            @if (Session::has('danger'))
-                <div class="alert alert-danger" style="margin:10px 15px 0px 15px" >
-                    <h4>{{ Session::get('danger') }}</h4>
-                </div>
-
-            @endif
-
-            @if (session('message'))
-
-                <div class="alert alert-warning" style="color:blue" >
-                    <h4>{{ session('message') }}</h4>
-                </div>
-
-            @endif
+            @include('_message')
         </td>
     </tr>
     <tr>
@@ -67,6 +53,5 @@
     </tr>
 </table>
 
-<embed src="{!! asset('notice.wav') !!}" autostart=true width="0" heitht="0"></embed>
 
 @stop

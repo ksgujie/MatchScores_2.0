@@ -1,7 +1,7 @@
 <html>
 <head>
-
-    <title>计分 V2</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <title>{{ Session::get('action') }} 计分 V2 </title>
     <link href="{{ asset('/css/bootstrap.min.css') }}" rel="stylesheet" type="text/css">
     <script href="{{ asset('/js/jquery.min.css') }}"></script>
     <script href="{{ asset('/js/bootstrap.min.css') }}"></script>
@@ -19,10 +19,12 @@
 	</tr>
 </table>
 		
-@include('_message')
+<!-- @include('_message') -->
 	
 @yield('content')
-        <embed src="{!! asset('notice.wav') !!}" autostart=true width="0" heitht="0"></embed>
 
+@if (Session::has('action'))
+    <embed src="{!! asset('notice.wav') !!}" autostart=true width="0" heitht="0"></embed>
+@endif
 </body>
 </html>
