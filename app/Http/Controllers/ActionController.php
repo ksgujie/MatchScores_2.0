@@ -43,10 +43,11 @@ class ActionController extends Controller {
 
 	public function 导入报名数据()
 	{
-		$filename = matchConfig('全局.工作目录') . '/导入/报名数据导入.xlsx';
+		$workDir = matchConfig('全局.工作目录');
+		$filename = $workDir . '/导入/报名数据导入.xlsx';
 		$filename = gbk($filename);
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
-		$objSheet = $objExcel->getActiveSheet();
+		$objSheet = $objExcel->getSheetByName('数据');
 		$arrData=$objSheet->toArray();
 //		dump($arrData);die;
 		//导入EXCEL文件中的字段
@@ -76,6 +77,11 @@ class ActionController extends Controller {
 				$insertCount++;
 			}
 		}
+
+		//rename
+		$now = date("Y m d_H i s");
+		rename(gbk($workDir . '/导入/报名数据导入.xlsx'), gbk("$workDir/导入/报名数据导入（已导入{$now}）.xlsx"));
+		copy(gbk(base_path('/通用模板/报名数据导入.xlsx')), gbk($workDir.'/导入/报名数据导入.xlsx'));
 
 		return redirect('/')->with('message', "成功，共导入{$insertCount}条数据！耗时：". $this->runnedTime());
 	}
@@ -133,7 +139,6 @@ class ActionController extends Controller {
 		$savefile=gbk(matchConfig('全局.工作目录').'/裁判用表.xlsx');
 		$this->checkFileExist($savefile);
 
-//		Template::生成裁判用表模板(gbk(matchConfig('全局.工作目录').'/模板/裁判用表模板.xls'));
 		Template::根据参数生成表格('裁判用表', gbk(matchConfig('全局.工作目录').'/模板/裁判用表模板.xlsx'));
 
 		$arrItems = matchConfig('裁判用表');
@@ -307,7 +312,7 @@ class ActionController extends Controller {
 		$filename = matchConfig('全局.工作目录') . '/导入/自定义导入.xlsx';
 		$filename = gbk($filename);
 		$objExcel = \PHPExcel_IOFactory::load( $filename );
-		$objSheet = $objExcel->getSheetByName('导入');
+		$objSheet = $objExcel->getSheetByName('数据');
 		if (!$objSheet) {
 			exit("错误：未找到名为“导入”的表");
 		}
@@ -336,7 +341,7 @@ class ActionController extends Controller {
 	{
 		$file = gbk(matchConfig('全局.工作目录').'/导入/更改姓名.xlsx');
 		$objExcel = \PHPExcel_IOFactory::load( $file );
-		$objSheet = $objExcel->getActiveSheet();
+		$objSheet = $objExcel->getSheetByName('数据');
 		$arrData=$objSheet->toArray();
 		for ($i = 1; $i < count($arrData); $i++) {
 			$编号 = trim($arrData[$i][0]);
@@ -355,7 +360,7 @@ class ActionController extends Controller {
 	{
 		$file = gbk(matchConfig('全局.工作目录').'/导入/添加名单.xlsx');
 		$objExcel = \PHPExcel_IOFactory::load( $file );
-		$objSheet = $objExcel->getActiveSheet();
+		$objSheet = $objExcel->getSheetByName('数据');
 		$arrData=$objSheet->toArray();
 		if (1==count($arrData)) {
 			exit('文件中没有数据啊！！');

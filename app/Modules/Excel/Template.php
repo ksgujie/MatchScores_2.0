@@ -100,7 +100,7 @@ class Template extends Base {
 
 		foreach ($matchConfig['成绩册'] as $item=>$itemConfig) {
 //			dump($itemConfig);
-			//检查表格在配置文件中是否存在，如果存在就该表取消隐藏，否则新建一个，手工做的模板表表名命名规则：$参数表表名 + 配置里的表名（例：裁判用表A1）
+			//检查表格在配置文件中是否存在，如果存在就该表取消隐藏，否则新建一个，手工做的模板表表名命名规则：$参数表表名 + 配置里的表名（例：成绩册A1）
 			$objSheet = $objExcel->getSheetByName('成绩册' . $itemConfig['表名']);
 			if ($objSheet != null) {
 				$objSheet->setSheetState(\PHPExcel_Worksheet::SHEETSTATE_VISIBLE);
