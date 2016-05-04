@@ -41,6 +41,8 @@ class Template extends Base {
 				$objSheet->getTabColor()->setRGB('000000');	//设置标签颜色
 				//设置标题行（第一行）、首条数据行（第二行）
 //				for ($i = 0; $i < count($itemConfig['字段']); $i++) {
+				//记录每个列的宽度，供调整列宽时使用
+				$arrPerColWidth = [];
 				//列索引（第几个列）
 				$n = 0;
 				foreach ($itemConfig['字段'] as $k => $_val) {
@@ -49,6 +51,7 @@ class Template extends Base {
 					$colName = \PHPExcel_Cell::stringFromColumnIndex($n);//列名
 					$objSheet->getRowDimension(1)->setRowHeight($itemConfig['标题行高']);
 					$objSheet->getColumnDimension($colName)->setWidth($itemConfig['字段宽度'][$k]);//设置列宽
+					$arrPerColWidth[] = $itemConfig['字段宽度'][$k];//保存列宽
 					$objCell = $objSheet->getCellByColumnAndRow($n, 1);//单元格对象
 					$objCell->setValueExplicit($itemConfig['字段'][$k], \PHPExcel_Cell_DataType::TYPE_STRING);//填值
 					//设置格式
@@ -70,6 +73,17 @@ class Template extends Base {
 
 					$n++;
 				}
+				//调整列宽，如果表格的宽度小于90（纵向）或135（横向）,就把不足的宽度平均分配给各列
+				if ( ($itemConfig['纸张方向']=='纵' && array_sum($arrPerColWidth) < 90) || ($itemConfig['纸张方向']=='横' && array_sum($arrPerColWidth) < 135) ) {
+					//计算出增加的宽度
+					$bestWidth = $itemConfig['纸张方向']=='纵' ? 90 : 135;
+					$addWidth = (int)(($bestWidth-array_sum($arrPerColWidth)) / count($arrPerColWidth));
+					for ($i=0; $i < count($arrPerColWidth); $i++) { 
+						$colName = \PHPExcel_Cell::stringFromColumnIndex($i);//列名
+						$objSheet->getColumnDimension($colName)->setWidth($arrPerColWidth[$i] + $addWidth);//设置列宽
+					}
+				}
+
 				//设置页面方向
 				if ($itemConfig['纸张方向']=='纵') {
 					$objSheet->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_PORTRAIT);
@@ -119,12 +133,15 @@ class Template extends Base {
 				//设置标题行（第三行）、首条数据行（第四行）
 				//列索引（第几个列）
 				$colIndex = 0;
+				//记录每个列的宽度，供调整列宽时使用
+				$arrPerColWidth = [];
 				foreach ($itemConfig['字段'] as $k => $_val) {
 //					dd($itemConfig);
 					////////标题（第3行，第2行是项目名称、级别）////////
 					$colName = \PHPExcel_Cell::stringFromColumnIndex($colIndex);//列名
 					$objSheet->getRowDimension(3)->setRowHeight($itemConfig['标题行高']);
 					$objSheet->getColumnDimension($colName)->setWidth($itemConfig['字段宽度'][$k]);//设置列宽
+					$arrPerColWidth[] = $itemConfig['字段宽度'][$k];//保存列宽
 					$objCell = $objSheet->getCellByColumnAndRow($colIndex, 3);//单元格对象
 					$objCell->setValueExplicit($itemConfig['字段'][$k], \PHPExcel_Cell_DataType::TYPE_STRING);//填值
 					//设置格式
@@ -146,6 +163,18 @@ class Template extends Base {
 
 					$colIndex++;
 				}
+
+				//调整列宽，如果表格的宽度小于90（纵向）,就把不足的宽度平均分配给各列
+				if ( array_sum($arrPerColWidth) < 90) {
+					//计算出增加的宽度
+					$bestWidth = 90;
+					$addWidth = (int)(($bestWidth-array_sum($arrPerColWidth)) / count($arrPerColWidth));
+					for ($i=0; $i < count($arrPerColWidth); $i++) { 
+						$colName = \PHPExcel_Cell::stringFromColumnIndex($i);//列名
+						$objSheet->getColumnDimension($colName)->setWidth($arrPerColWidth[$i] + $addWidth);//设置列宽
+					}
+				}
+
 				//设置A1、Ax（替代页眉）
 				$A1 = $objSheet->getCell("A1");
 				$A1->setValue(matchConfig('全局.比赛名称'));

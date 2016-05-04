@@ -146,7 +146,7 @@ class ActionController extends Controller {
 			$objExcel->insertPageBreak('分组');
 			//页眉、页脚
 			$objExcel->objSheet->getHeaderFooter()->setOddHeader('&L&"宋体,常规"&14 '. matchConfig('全局.比赛名称') . '　成绩记录表' . "&C&\"微软雅黑,常规\"&18\n{$itemName}" );
-			$objExcel->objSheet->getHeaderFooter()->setOddFooter( '&L&P/&N页&R裁判员签名_______________ 项目裁判长签名_______________');
+			$objExcel->objSheet->getHeaderFooter()->setOddFooter( "&L{$item['表名']} &P/&N页&R裁判员签名_______________ 项目裁判长签名_______________");
 			//面边距
 			$objExcel->objSheet->getPageMargins()->setHeader(0.3);
 			$objExcel->objSheet->getPageMargins()->setTop(0.98);
