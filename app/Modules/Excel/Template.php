@@ -77,7 +77,7 @@ class Template extends Base {
 				if ( ($itemConfig['纸张方向']=='纵' && array_sum($arrPerColWidth) < 90) || ($itemConfig['纸张方向']=='横' && array_sum($arrPerColWidth) < 135) ) {
 					//计算出增加的宽度
 					$bestWidth = $itemConfig['纸张方向']=='纵' ? 90 : 135;
-					$addWidth = (int)(($bestWidth-array_sum($arrPerColWidth)) / count($arrPerColWidth));
+					$addWidth = ($bestWidth-array_sum($arrPerColWidth)) / count($arrPerColWidth);
 					for ($i=0; $i < count($arrPerColWidth); $i++) { 
 						$colName = \PHPExcel_Cell::stringFromColumnIndex($i);//列名
 						$objSheet->getColumnDimension($colName)->setWidth($arrPerColWidth[$i] + $addWidth);//设置列宽
@@ -136,7 +136,6 @@ class Template extends Base {
 				//记录每个列的宽度，供调整列宽时使用
 				$arrPerColWidth = [];
 				foreach ($itemConfig['字段'] as $k => $_val) {
-//					dd($itemConfig);
 					////////标题（第3行，第2行是项目名称、级别）////////
 					$colName = \PHPExcel_Cell::stringFromColumnIndex($colIndex);//列名
 					$objSheet->getRowDimension(3)->setRowHeight($itemConfig['标题行高']);
@@ -165,10 +164,10 @@ class Template extends Base {
 				}
 
 				//调整列宽，如果表格的宽度小于90（纵向）,就把不足的宽度平均分配给各列
-				if ( array_sum($arrPerColWidth) < 90) {
+				$bestWidth = 90;
+				if ( array_sum($arrPerColWidth) < $bestWidth ) {
 					//计算出增加的宽度
-					$bestWidth = 90;
-					$addWidth = (int)(($bestWidth-array_sum($arrPerColWidth)) / count($arrPerColWidth));
+					$addWidth = ($bestWidth-array_sum($arrPerColWidth)) / count($arrPerColWidth);
 					for ($i=0; $i < count($arrPerColWidth); $i++) { 
 						$colName = \PHPExcel_Cell::stringFromColumnIndex($i);//列名
 						$objSheet->getColumnDimension($colName)->setWidth($arrPerColWidth[$i] + $addWidth);//设置列宽
@@ -198,7 +197,7 @@ class Template extends Base {
 				$Ax->setValue('小学组');
 				$Ax->getStyle()->applyFromArray(Style::$成绩册_项目名称);
 				$Ax->getStyle()->applyFromArray(Style::$右对齐);
-				//设置第一行的上边框线
+				//设置第二行的上边框线
 				for ($i = 0; $i < $colIndex; $i++) {
 					$cell = $objSheet->getCellByColumnAndRow($i, 2);
 					$cell->getStyle()->applyFromArray(Style::$上边框);
