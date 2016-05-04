@@ -19,26 +19,12 @@ class ActionController extends Controller {
 	
 	public function 临时()
 	{
-		for ($ii = 1; $ii <= 7; $ii++) {
 
-			$objExcel = \PHPExcel_IOFactory::load("g:/{$ii}-1.csv");
-			$objSheet = $objExcel->getActiveSheet();
-			$arr=$objSheet->toArray();
-			for ($i = 1; $i < count($arr); $i++) {
-				$row = $arr[$i];
-				$time = $row[4];
-				if ($time != '-.---') {
-					$time = str_replace([':','.'], '', $time);
-					$time = preg_replace('/\d$/', '', $time);
-					$r[]=[$row[11], (int)$row[3] . Show::补零($time, 6)];
-				} else {
-					$r[]=[$row[11], ''];
-				}
-			}
-		}
-
-		arrayToExcel($r, 'g:/aaaaa.xls', 1);
-		die;////////
+		$objExcel = \PHPExcel_IOFactory::load("g:/1.xlsx");
+		$objSheet = $objExcel->getActiveSheet();
+		$a=$objSheet->getColumnDimension('A')->getWidth();
+		dd($a);
+		die;
 	}
 
 	public function 导入报名数据()

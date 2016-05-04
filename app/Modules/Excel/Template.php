@@ -70,6 +70,12 @@ class Template extends Base {
 
 					$n++;
 				}
+				//设置页面方向
+				if ($itemConfig['纸张方向']=='纵') {
+					$objSheet->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_PORTRAIT);
+				} else {
+					$objSheet->getPageSetup()->setOrientation(\PHPExcel_Worksheet_PageSetup::ORIENTATION_LANDSCAPE);
+				}
 			}
 		}
 
