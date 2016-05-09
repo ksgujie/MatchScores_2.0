@@ -19,11 +19,16 @@ class ActionController extends Controller {
 	
 	public function 临时()
 	{
+		$rs=User::where('项目', '环保时装秀')->get();
+		foreach ($rs as $row) {
+			echo "update students set 编号='{$row->编号}' where id={$row->报名ID};\n";
+		}
 
-		$objExcel = \PHPExcel_IOFactory::load("g:/1.xlsx");
-		$objSheet = $objExcel->getActiveSheet();
-		$a=$objSheet->getColumnDimension('A')->getWidth();
-		dd($a);
+		$rs=User::where('项目', '环保创意制作')->get();
+		foreach ($rs as $row) {
+			echo "update students set 编号='{$row->编号}' where id={$row->报名ID};\n";
+		}
+
 		die;
 	}
 
