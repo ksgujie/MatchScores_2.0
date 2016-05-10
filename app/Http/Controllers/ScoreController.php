@@ -42,6 +42,14 @@ class ScoreController extends Controller {
 	{
 		$items = array_keys(matchConfig('项目'));
 		foreach ($items as $项目名称) {
+			$this->计算单项成绩($项目名称);
+		}
+	}
+
+	public function 计算成绩bak2016年5月9日()
+	{
+		$items = array_keys(matchConfig('项目'));
+		foreach ($items as $项目名称) {
 //			$项目名称='1/10遥控电动房车竞速赛';///////用于测试单项成绩//////
 			$cfgItem	= new Item($项目名称);
 			$cfgScore	= new Score($项目名称);
@@ -57,6 +65,30 @@ class ScoreController extends Controller {
 			}
 		}
 //		return redirect('main/index')->with('message', $项目名称 . ' 计算完成');
+	}
+
+	/**
+	 * 计算单个项目的成绩
+	 * @param $项目名称
+	 * @param null $组别 如果$组别==null就循环计算该项目下所有“组别”，否则只计算指定组别
+	 */
+	public function 计算单项成绩($项目名称, $组别=null)
+	{
+		$cfgItem	= new Item($项目名称);
+		$cfgScore	= new Score($项目名称);
+
+		$calc = new Calc();
+		$calc->填充排序字段($项目名称);
+
+		if ($组别 != null) {
+			$calc->单项排名($项目名称, $组别, $cfgScore->排序方式);
+			$calc->奖项($项目名称, $组别, $cfgScore->获奖比例);
+		} else {
+			foreach ($cfgItem->组别 as $group) {
+				$calc->单项排名($项目名称, $group, $cfgScore->排序方式);
+				$calc->奖项($项目名称, $group, $cfgScore->获奖比例);
+			}
+		}
 	}
 
 	/**

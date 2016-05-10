@@ -2,7 +2,6 @@
 
 use App\User;
 use App\Modules\MatchConfig\Score;
-use PhpParser\Node\Stmt\ElseIf_;
 
 class Calc
 {
