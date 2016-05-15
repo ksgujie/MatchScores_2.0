@@ -74,6 +74,12 @@ class ScoreController extends Controller {
 	 */
 	public function 计算单项成绩($项目名称, $组别=null)
 	{
+		if ($组别 == null) {
+			\DB::update("update users set  成绩排序='', 排名='', 奖项='' where 项目=?", [$项目名称]);
+		} else {
+			\DB::update("update users set  成绩排序='', 排名='', 奖项='' where 项目=? and 组别=?", [$项目名称, $组别]);
+		}
+
 		$cfgItem	= new Item($项目名称);
 		$cfgScore	= new Score($项目名称);
 
@@ -131,6 +137,8 @@ class ScoreController extends Controller {
 
 	public function 生成成绩册()
 	{
+		$this->checkFileExist(gbk(matchConfig('全局.工作目录') . '/成绩册.xlsx'));
+
 		//生成模板
 		Template::生成成绩册模板();
 		//定义要使用到的变量、对象

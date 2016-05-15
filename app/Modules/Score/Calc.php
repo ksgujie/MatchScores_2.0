@@ -20,14 +20,17 @@ class Calc
 		foreach ($rs as $row) {
 			if (strlen($row->原始成绩)) {
 				$rawScores = unserialize($row->原始成绩);
-				//判断原始成绩的数量。这里只做了最多三个原始成绩，一般也够用了
-				if (1==count($rawScores)) {
-					$row->成绩排序 = Sort::$sortFun($rawScores[0]);
-				} elseif (2==count($rawScores)) {
-					$row->成绩排序 = Sort::$sortFun($rawScores[0], $rawScores[1]);
-				} elseif (3==count($rawScores)) {
-					$row->成绩排序 = Sort::$sortFun($rawScores[0], $rawScores[1], $rawScores[2]);
+				//将原始成绩、用时长度放入一数组，传递给“成绩排序”方法
+				$arrInput = [];
+				for ($i=0; $i < count($rawScores); $i++) { 
+					$n = $i+1;
+					$key = "inputScore$n";
+					$arrInput[$key] = $rawScores[$i];
 				}
+				//加上“用时长度”，尽管有些成绩中没有用时
+				$arrInput['timeLen'] = $cfgScore->用时长度;
+				//开始排序
+				$row->成绩排序 = Sort::$sortFun($arrInput);
 				
 				$row->save();
 			}

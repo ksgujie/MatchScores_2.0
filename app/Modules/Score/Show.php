@@ -12,14 +12,37 @@ class Show
 	 */
 	public static function 补零($s, $len = 10)
 	{
-		$slen = strlen($s);
+			$slen = strlen($s);
+			$zero='';
+			if ($slen<$len) {
+				for ($i = 0; $i < $len - $slen ; $i++) {
+					$zero .= '0';
+				}
+			}
+			$r = $zero.$s;
+		return $r;
+	}
+
+	public static function 负数补零($s, $len = 10)
+	{
+		//组合出一个最高位是1,后面加上$len个零的数，用来加（因为$s是负数，所以这里不是减）上$s
+		$aVar = '1';
+		for ($i = 0; $i < $len - 1; $i++) {
+			$aVar .= '0';
+		}
+
+		$ss = $aVar + $s;
+
+		$slen = strlen($ss);
 		$zero='';
-		if ($slen<$len) {
-			for ($i = 0; $i < $len - $slen; $i++) {
+		if ( $slen < $len-1 ) {
+			for ($i = 0; $i < $len - $slen ; $i++) {
 				$zero .= '0';
 			}
 		}
-		return $zero.$s;
+
+		$r = '!' . $zero . $ss;
+		return $r;
 	}
 
 	public static function 标记_跳过空字符串($var)

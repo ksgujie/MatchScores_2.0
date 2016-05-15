@@ -4,31 +4,34 @@ use App\Modules\Score\Show;
 
 class Sort
 {
-	/**
-	 * @param $score1
-	 * @param null $score2 这是一个无用参数，Calc::填充排序字段()里调用时默认是两个参数，这里只放一个参数会出错
-	 * @return mixed
-	 */
-	public static function 一轮比大小($score)
+
+	//基础函数
+	public static function 得出_高低分及用时_适合用时短者胜($inputScore1, $inputScore2, $timeLen=6)
 	{
-		return Show::补零($score);
-	}
-	/**
-	 * 先比最高轮得分，得分高者排前，最高得分相同的再看第二轮得分，两轮成绩相同的，再看最高得分轮的用时长，用时长的排前
-	 * @param $inputScore1 成绩1 已补零
-	 * @param $inputScore2 成绩2 已补零
-	 * @param $timeLen 用时字符串的长度，一般为6或者4；也可为其它长度，比如：用在团体总积分中的排序时长度就为3
-	 * @return string
-	 */
-	public static function 高分低分用时长($inputScore1, $inputScore2, $timeLen = 6)
-	{
-		$strReg = '/^(\d+)(\d{'. $timeLen .'})$/';
+		$flag=false;
+		if ($inputScore1 == '-654321' or $inputScore2=='-987654') {
+			$flag =true;
+		}///////////////////////////////////////////////////////////////////
+
+
+		//补零
+		$inputScore1 = Show::补零($inputScore1);
+		$inputScore2 = Show::补零($inputScore2);
+
+		$strReg = '/^([-\d]+)(\d{'. $timeLen .'})$/';
 		preg_match($strReg, $inputScore1, $arr);
-		$score1 = $arr[1];
-		$time1 = $arr[2];
+		$score1 = (int) preg_replace('/^0+/', '', $arr[1]);	//去掉最前面的0,防止有负数
+		$time1 = (int)$arr[2];
+
+//		if ($flag) {
+//			dd($arr);
+//
+//		}///////////////////////////////////////////////////////
+
+
 		preg_match($strReg, $inputScore2, $arr);
-		$score2 = $arr[1];
-		$time2 = $arr[2];
+		$score2 = (int) preg_replace('/^0+/', '', $arr[1]);	//去掉最前面的0,防止有负数
+		$time2 = (int)$arr[2];
 
 		$maxScore = max($score1, $score2);//最大得分
 		$minScore = min($score1, $score2);//最小得分
@@ -36,7 +39,8 @@ class Sort
 		//判断出最大得分的用时
 		if ($score1 == $maxScore) {
 			if ($score1==$score2) {
-				$maxScoreTime = max($time1, $time2);
+				$maxScoreTime = min($time1, $time2);	//用时短者胜
+//				$maxScoreTime = max($time1, $time2);	//用长短者胜
 			} else {
 				$maxScoreTime = $time1;
 			}
@@ -46,12 +50,48 @@ class Sort
 		//最小得分的用时
 		$minScoreTime = $maxScoreTime == $time1 ? $time2 : $time1;
 
+		return [
+			'高分'=>$maxScore,
+			'低分'=>$minScore,
+			'高分用时'=>$maxScoreTime,
+			'低分用时'=>$minScoreTime,
+		];
+	}
+
+	/**
+	 * @param $score
+	 * @return mixed
+	 */
+	public static function 一轮比大小($input)
+	{
+		$inputScore1 = $input['inputScore1'];
+		return $inputScore1 >= 0 ? Show::补零($inputScore1) : Show::负数补零($inputScore1);
+	}
+	/**
+	 * 先比最高轮得分，得分高者排前，最高得分相同的再看第二轮得分，两轮成绩相同的，再看最高得分轮的用时长，用时长的排前
+	 * @param $inputScore1 成绩1 已补零
+	 * @param $inputScore2 成绩2 已补零
+	 * @param $timeLen 用时字符串的长度，一般为6或者4；也可为其它长度，比如：用在团体总积分中的排序时长度就为3
+	 * @return string
+	 */
+	public static function 高分低分用时长($input)
+	{
+		$inputScore1 = $input['inputScore1'];
+		$inputScore2 = $input['inputScore2'];
+		$timeLen	 = $input['timeLen'];
+		
+		$arrScore = self::得出_高低分及用时($inputScore1, $inputScore2, $timeLen);
+		$高分 = $arrScore['高分'];
+		$低分 = $arrScore['高分'];
+		$高分用时 = $arrScore['高分用时'];
+		$低分用时 = $arrScore['低分用时'];
+
 		return join(',',
 			[
-				Show::补零($maxScore),
-				Show::补零($minScore),
-				Show::补零($maxScoreTime),
-				Show::补零($minScoreTime)
+				$高分>=0 ? Show::补零($高分) : Show::负数补零($高分),
+				$低分>=0 ? Show::补零($低分) : Show::负数补零($低分),
+				Show::补零($高分用时),
+				Show::补零($低分用时)
 			]
 		);
 	}
@@ -63,43 +103,24 @@ class Sort
 	 * @param $timeLen 用时字符串的长度，一般为6或者4；也可表示积分的长度，可为其它长度
 	 * @return string
 	 */
-	public static function 高分低分用时短($inputScore1, $inputScore2, $timeLen = 6)
+	public static function 高分低分用时短($input)
 	{
-		//自动补零
-		$inputScore1 = Show::补零($inputScore1);
-		$inputScore2 = Show::补零($inputScore2);
-		
-		$strReg = '/^(\d+)(\d{'. $timeLen .'})$/';
-		preg_match($strReg, $inputScore1, $arr);
-		$score1 = $arr[1];
-		$time1 = $arr[2];
-		preg_match($strReg, $inputScore2, $arr);
-		$score2 = $arr[1];
-		$time2 = $arr[2];
+		$inputScore1 = $input['inputScore1'];
+		$inputScore2 = $input['inputScore2'];
+		$timeLen	 = $input['timeLen'];
 
-		$maxScore = max($score1, $score2);//最大得分
-		$minScore = min($score1, $score2);//最小得分
-
-		//判断出最大得分的用时
-		if ($score1 == $maxScore) {
-			if ($score1==$score2) {
-				$maxScoreTime = min($time1, $time2);
-			} else {
-				$maxScoreTime = $time1;
-			}
-		} else {
-			$maxScoreTime = $time2;
-		}
-
-		//最小得分的用时
-		$minScoreTime = $maxScoreTime == $time1 ? $time2 : $time1;;
+		$arrScore = self::得出_高低分及用时($inputScore1, $inputScore2, $timeLen);
+		$高分 = $arrScore['高分'];
+		$低分 = $arrScore['高分'];
+		$高分用时 = $arrScore['高分用时'];
+		$低分用时 = $arrScore['低分用时'];
 
 		return join(',',
 			[
-				Show::补零($maxScore),
-				Show::补零($minScore),
-				Show::补零(1000000000 - $maxScoreTime),
-				Show::补零(1000000000 - $minScoreTime),
+				$高分>=0 ? Show::补零($高分) : Show::负数补零($高分),
+				$低分>=0 ? Show::补零($低分) : Show::负数补零($低分),
+				Show::补零(1000000000 - $高分用时),
+				Show::补零(1000000000 - $低分用时),
 			]
 		);
 	}
@@ -112,41 +133,28 @@ class Sort
 	 * @param int $timeLen
 	 * @return mixed
 	 */
-	public static function 最高轮得分大用时短($inputScore1, $inputScore2, $timeLen = 6)
+	public static function 比最高轮_得分大_用时短($input)
 	{
-		//自动补零
-		$inputScore1 = Show::补零($inputScore1);
-		$inputScore2 = Show::补零($inputScore2);
+		$inputScore1 = $input['inputScore1'];
+		$inputScore2 = $input['inputScore2'];
+		$timeLen	 = $input['timeLen'];
 
-		$strReg = '/^(\d+)(\d{'. $timeLen .'})$/';
-		preg_match($strReg, $inputScore1, $arr);
-		$score1 = $arr[1];
-		$time1 = $arr[2];
-		preg_match($strReg, $inputScore2, $arr);
-		$score2 = $arr[1];
-		$time2 = $arr[2];
+		$arrScore = self::得出_高低分及用时_适合用时短者胜($inputScore1, $inputScore2, $timeLen);
+		$高分 = $arrScore['高分'];
+		$低分 = $arrScore['高分'];
+		$高分用时 = $arrScore['高分用时'];
+		$低分用时 = $arrScore['低分用时'];
 
-		$maxScore = max($score1, $score2);//最大得分
-		$minScore = min($score1, $score2);//最小得分
-
-		//判断出最大得分的用时
-		if ($score1 == $maxScore) {
-			if ($score1==$score2) {
-				$maxScoreTime = min($time1, $time2);
-			} else {
-				$maxScoreTime = $time1;
-			}
-		} else {
-			$maxScoreTime = $time2;
-		}
-
-		//最小得分的用时
-		$minScoreTime = $maxScoreTime == $time1 ? $time2 : $time1;;
+		///////////测试////////////
+//		if ($inputScore1 == '-654321' or $inputScore2=='-654321') {
+//			dd($arrScore);
+//		}
 
 		return join(',',
 			[
-				Show::补零($maxScore),
-				Show::补零(1000000000 - $maxScoreTime),
+//				Show::补零($高分),
+				$高分>=0 ? Show::补零($高分) : Show::负数补零($高分),
+				Show::补零(1000000000 - $高分用时),
 			]
 		);
 	}
