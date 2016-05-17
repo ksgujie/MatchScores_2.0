@@ -102,37 +102,28 @@ class ScoreController extends Controller {
 	 */
 	public function 计算综合团体()
 	{
-		$groupA = ['1/10遥控电动越野竞速赛','1/10遥控电动房车竞速赛','1/16遥控电动越野、大脚车竞速赛','1/16遥控电动房车竞速赛','1/18遥控电动车竞速赛','1/28遥控电动房车竞速赛'];
-		$groupB = ['“闪电冲线教育特供”竞速赛','电动四驱车拼装赛','风动车直线竞速赛','车辆模型电脑模拟赛'];
+		$groupA = '“七彩风车小屋”拼装彩绘个人赛';
+		$groupB = '“缤纷童年”场景规划制作团体赛';
 		$schools = User::所有参赛队();
 		$result = [];
 		foreach ($schools as $school) {
-			//A组最好排名
-			$whereIn = "('" . join("','", $groupA) . "')";
-			$user = User::whereRaw("参赛队=? and 项目 in $whereIn and 排名!='' order by abs(排名)", [$school])->first();
+			//b组最好排名
+			$user = User::whereRaw("参赛队=? and 项目=? and 排名!='' order by abs(排名)", [$school,$groupB])->first();
+			//a
 			if ($user) {
-				$result[$school]['A'] = $user;
-			}
-			//Ｂ组最好排名
-			$whereIn = "('" . join("','", $groupB) . "')";
-			$user = User::whereRaw("参赛队=? and 项目 in $whereIn and 排名!='' order by abs(排名)", [$school])->first();
-			if ($user) {
-				$result[$school]['B'] = $user;
+				$users = User::whereRaw("参赛队=? and 项目=? and 排名!='' order by abs(排名)", [$school,$groupA])->take(3)->get();
+				if ($users) {
+					$n=0;
+					foreach ($users as $_u) {
+						$n+=$_u->排名;
+					}
+					$result[]=[$school,$user->组别, $n, $user->排名];
+				}
+
 			}
 		}
 
-		foreach ($result as $school => $schoolScores) {
-			$r=[];
-			if (isset($schoolScores['A']) && isset($schoolScores['B'])) {
-				$r[]=  $school;
-				$r[]=  $schoolScores['A']->项目;
-				$r[]=  $schoolScores['A']->排名;
-				$r[]=  $schoolScores['B']->项目;
-				$r[]=  $schoolScores['B']->排名;
-				$rr[]=$r;
-			}
-		}
-		arrayToExcel($rr, 'g:/tt.xlsx',9);
+		arrayToExcel($result, 'g:/tt.xlsx',9);
 	}
 
 	public function 生成成绩册()
@@ -238,59 +229,22 @@ class ScoreController extends Controller {
 	
 	public function 优秀辅导员名单()
 	{
-		$schools='昆山市周庄中学
-昆山市玉峰实验学校
-昆山市娄江实验学校（初中部）
-昆山市葛江中学
-昆山市城北高科园中心小学
-昆山市大市中心小学校
-昆山市费俊龙中学（初中部）
-昆山国际学校
-昆山市陆家镇菉溪小学
-昆山开发区青阳港学校（初中部）
-昆山市兵希中学
-昆山市花桥中心小学校
-昆山市娄江实验学校（小学部）
-昆山市柏庐实验小学
-昆山市南港中心小学校
-昆山高新区吴淞江学校（初中部）
-昆山市周市镇永平小学
-昆山市培本实验小学
-昆山市周市华城美地小学
-昆山市正仪中心小学校
-昆山市淀山湖中心小学校
-昆山开发区青阳港学校（小学部）
-昆山市玉山镇司徒街小学
-昆山市锦溪中心小学校
-昆山高新区吴淞江学校（小学部）
-昆山市张浦中心小学校
-昆山开发区世茂蝶湖湾小学
-昆山市实验小学
-昆山开发区晨曦小学';
-		$schools = explode("\n",$schools);
-		$r[] = ["参赛队", "教练", "项目", "组别", "学生", "排名", "奖项"];
-		foreach ($schools as $school) {
-			$school=trim($school);
-			$users = User::where('参赛队', $school)->get();
-			foreach ($users as $user) {
-				$teachers = trim($user->教练);
-				$teachers = preg_split('/[\s]+/', $teachers);
-				foreach ($teachers as $teacher) {
-					$r[]=[ "$school","$teacher\n"];
-//					$r[$teacher]='';
-//					$r[$teacher][]=$school;
-//					$r[$teacher][]=$teacher;
-//					$r[$teacher]=$user->项目;
-//					$r[$teacher]=$user->组别;
-//					$r[$teacher]=$user->姓名;
-//					$r[$teacher]=$user->排名;
-//					$r[$teacher]=$user->奖项;
+		$arrItems = matchConfig('项目');
+		//开始按项目循环处理
+		$r=[];
+		foreach ($arrItems as $itemName => $itemConfig) {
+			$objItem = new Item($itemName);
+			foreach ($objItem->组别 as $group) {
+				$user=User::whereRaw("项目=? and 组别=? and 奖项=? order by abs(排名) desc",[$itemName, $group, '一等奖'])->first();
+//				dd($user);
+				$maxPm = $user->排名;
+				$maxPm=round($maxPm/2);
+				$users = User::whereraw("项目=? and 组别=? and 奖项=? and abs(排名) <= $maxPm",[$itemName, $group, '一等奖'])->get();
+				foreach ($users as $user) {
+					$r[$user->参赛队.$user->教练]=$user->toArray();
 				}
-//				echo "\n";
 			}
 		}
-		arrayToExcel($r, 'g:/tt.xlsx', 1);
-		die;
+		arrayToExcel($r, 'g:/fdy.xlsx',true);
 	}
-
 }

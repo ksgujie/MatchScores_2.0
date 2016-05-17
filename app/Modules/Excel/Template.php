@@ -205,11 +205,11 @@ class Template extends Base {
 			}
 			//页眉、页脚
 			//$objSheet->getHeaderFooter()->setOddHeader('&L' . matchConfig('全局.比赛名称') . '&R' . matchConfig('全局.时间地点'));
-			$objSheet->getHeaderFooter()->setOddFooter('&LPage:&P/&N');
+			$objSheet->getHeaderFooter()->setOddFooter('&LPage:&P/&N&RPrinted: &D &T');
 			//面边距
 			$objSheet->getPageMargins()->setHeader(0.4);
 			$objSheet->getPageMargins()->setTop(0.4);
-			$objSheet->getPageMargins()->setFooter(0.2);
+			$objSheet->getPageMargins()->setFooter(0.3);
 			$objSheet->getPageMargins()->setBottom(0.5);
 			$objSheet->getPageMargins()->setLeft(0.3);
 			$objSheet->getPageMargins()->setRight(0.3);
