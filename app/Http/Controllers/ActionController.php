@@ -9,6 +9,9 @@ use Illuminate\Support\Facades\Session;
 
 class ActionController extends Controller {
 
+	//成绩备注。记录在成绩字段里的备注信息，用来判断获取该列成绩是否需要保留格式
+	private $scoreComment;
+
 	public function run($do)
 	{
 		$this->$do();
@@ -212,12 +215,12 @@ class ActionController extends Controller {
 		foreach ($arrItems as $itemName => $item) {
 			$objItem = new Item($itemName);
 			$objSheet = $objExcel->getSheetByName($objItem->表名);
+
 			//所有数据
 			$arrRows=$objSheet->toArray(null,true,false,false);
-			//获取firstDataRowNum,如果A2单元格里有数字就取此值，否则就取值3 （这个功能暂时取消）
-//			$A2 = (int)trim($arrRows[0][0]);
-//			$firstDataRowNum = $A2>0 ? $A2 : 3;
-			$firstDataRowNum = 3;
+			//获取firstDataRowNum,如果B1单元格里有数字就取此值，否则就取值3
+			$B1 = (int)trim($arrRows[0][1]);
+			$firstDataRowNum = $B1>0 ? $B1 : 3;
 			//第一行数据（定位成绩在哪几列）
 			$firstRow = array_map('trim', $arrRows[0]);
 			//记录成绩所在的列数 例：$arrScoreCol[1]=2，1是“成绩1”,2是所在列数（列数从0开始计数）
@@ -231,6 +234,13 @@ class ActionController extends Controller {
 				} elseif (preg_match('/^备注(\d+)$/i', $cellValue, $_array)) {//备注
 					$arrMarkCol[$_array[1]] = $i;
 				}
+			}
+			//读取成绩字段所在单元格的备注信息，以确定读取成绩时是否需要保留格式
+			$arrScoreComment = [];
+			foreach ($arrScoreCol as $scoreNum => $colNum) {
+				$comment = $objSheet->getCommentByColumnAndRow($colNum, $firstDataRowNum-1)->getText()->getPlainText();
+				$comment = trim($comment);
+				$arrScoreComment[$scoreNum] = explode("\n", $comment);
 			}
 
 			//确定编号所在列
@@ -260,6 +270,10 @@ class ActionController extends Controller {
 					//检测成绩是否为空
 					if (strlen($_score)) {
 						$allScoresIsEmpty = false;
+					}
+					//判断一下是否需要读取有格式的成绩
+					if (in_array('保留格式', $arrScoreComment[$scoreNum])) {
+						$_score = $objSheet->getCellByColumnAndRow($colNum, $i+1)->getFormattedValue();
 					}
 					$arrScores[] = $_score;
 				}
@@ -319,7 +333,10 @@ class ActionController extends Controller {
 			$value = trim($arrData[$i][1]);
 			if (strlen($value)) {
 				$user = User::where('编号', $arrData[$i][0])->firstOrFail();
-				$user->分组 = $value;
+				if (!$user) {
+					dd($arrData[$i][0] . ' 该编号在数据库中未找到');
+				}
+				$user->$valueField = $value;
 				$user->save();
 			}
 		}

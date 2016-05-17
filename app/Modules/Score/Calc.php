@@ -110,6 +110,10 @@ class Calc
 			$thisUserCount = $thisUserCount > 0 ? $thisUserCount : 1;
 
 			for ($i = 0; $i < $thisUserCount; $i++) {
+				//判断一下，当某些项目获奖率为100%时，且一等奖人数“五入”进一位后，二、三等奖获奖人数会超过剩下来的人数，造成错误
+				if (!isset($users[$i])) {
+					break;
+				}
 				$user = $users[$i];
 				$user->奖项 = $jiangxiang;
 				//（判断一下，有排名的才有奖项）暂时取消该功能
