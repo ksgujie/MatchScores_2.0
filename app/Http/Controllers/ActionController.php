@@ -127,6 +127,47 @@ class ActionController extends Controller {
 		}//for i
 	}
 
+	public function 创建mysql视图()
+	{
+		$items = matchConfig('项目');
+		foreach ($items as $itemName => $item) {
+			foreach ($item['组别'] as $group) {
+				$viewName = addslashes($item['表名'].$group.$itemName);
+				$itemName = addslashes($itemName);
+				$group = addslashes($group);
+
+				//先删除
+				\DB::statement("DROP TABLE IF EXISTS `$viewName`");
+				\DB::statement("DROP VIEW IF EXISTS `$viewName`");
+
+				//生成
+				$sql = "CREATE 
+						VIEW `$viewName`AS 
+						SELECT
+						users.id,
+						users.`参赛队`,
+						users.`姓名`,
+						users.`编号`,
+						users.`原始成绩`,
+						users.`成绩备注`,
+						users.`成绩排序`,
+						users.`排名`,
+						users.`奖项`,
+						users.`积分`
+						FROM
+						users
+						WHERE
+						users.`项目` = '$itemName' AND 
+						users.`组别` = '$group'  
+						ORDER BY
+						if(users.`排名`='',1,0) ASC,
+						abs(users.`排名`) ASC,
+						users.`编号` ASC ";
+				\DB::statement($sql);
+			}
+		}
+	}
+
 	public function 生成裁判用表()
 	{
 		//检测文件是否已经存在

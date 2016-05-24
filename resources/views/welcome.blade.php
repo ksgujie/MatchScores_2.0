@@ -11,6 +11,7 @@
                 <li> {!! Html::link('action/报名顺序', '编排[报名顺序]') !!} </li>
                 <li> {!! Html::link('action/编号', '编排[编号]') !!} </li>
                 <li> {!! Html::link('action/分组', '编排[分组]') !!} </li>
+                <li> {!! Html::link('action/创建mysql视图', '创建mysql视图') !!} </li>
                 <li> {!! Html::link('action/生成检录用表', '生成检录用表') !!} </li>
                 <li> {!! Html::link('action/生成裁判用表', '生成裁判用表') !!} </li>
                 <li> {!! Html::link('action/生成分组情况表', '生成分组情况表') !!} </li>
