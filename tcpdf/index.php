@@ -2,13 +2,16 @@
 include "tcpdf_min_6_2_12/tcpdf.php";
 
 $pdf = new TCPDF(PDF_PAGE_ORIENTATION, PDF_UNIT, PDF_PAGE_FORMAT, true, 'UTF-8', false);
+//加密，限制文件被修改
+$pdf->SetProtection (['modify', 'copy', 'annot-forms', 'fill-forms', 'extract', 'assemble']);
+
 $pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
 
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
+$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, 'i', 8));
+$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, 'i', 9));
 //$pdf->setPrintHeader(false);
-$pdf->SetHeaderData(PDF_HEADER_LOGO, 10, '2016“放飞梦想”全国青少年纸飞机通讯赛', "安徽省蚌埠市高新教育集团第三实验小学代表");//, array(0,64,255), array(0,64,128));
-$pdf->setFooterData(array(0,0,0), array(0,0,0));
+$pdf->SetHeaderData(PDF_HEADER_LOGO, 10, '2016“放飞梦想”全国青少年纸飞机通讯赛', "安徽省蚌埠市高新教育集团第三实验小学代表");
+$pdf->setFooterData(array(0,0,0), array(255,255,255));
 
 // set margins
 $pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
