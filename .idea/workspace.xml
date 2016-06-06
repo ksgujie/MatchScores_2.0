@@ -2,18 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="e6507f4b-477d-4587-b886-b001be9ff976" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016昆山实践操作/2016年5月17日15时49分成绩册.xlsx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016昆山实践操作/桌贴.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016昆山实践操作/桌贴2.docx" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/2016昆山实践操作/门贴.docx" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016昆山实践操作/成绩册.xlsx" afterPath="$PROJECT_DIR$/2016昆山实践操作/成绩册.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016昆山实践操作/成绩录入.xlsx" afterPath="$PROJECT_DIR$/2016昆山实践操作/成绩录入.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/2016昆山实践操作/模板/成绩册模板.xlsx" afterPath="$PROJECT_DIR$/2016昆山实践操作/模板/成绩册模板.xlsx" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/备份/2016昆山车模/2016昆山车模/成绩录入.xls" afterPath="$PROJECT_DIR$/备份/2016昆山车模/2016昆山车模/成绩录入.xls" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/配置文件/2016昆山实践操作赛.xlsx" afterPath="$PROJECT_DIR$/配置文件/2016昆山实践操作赛.xlsx" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Http/Controllers/MainController.php" afterPath="$PROJECT_DIR$/app/Http/Controllers/MainController.php" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/app/Modules/Excel/Template.php" afterPath="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/config/database.php" afterPath="$PROJECT_DIR$/config/database.php" />
     </list>
     <ignored path="m.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,102 +27,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Show.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/Score/Show.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
-              <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="55" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Item.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/MatchConfig/Item.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="837">
-              <caret line="31" column="5" selection-start-line="31" selection-start-column="5" selection-end-line="31" selection-end-column="5" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Score.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/MatchConfig/Score.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Sort.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/Score/Sort.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="486">
-              <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ScoreController.php" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ScoreController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="342">
-              <caret line="241" column="113" selection-start-line="241" selection-start-column="113" selection-end-line="241" selection-end-column="113" />
-              <folding>
-                <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-                <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Template.php" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Template.php" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="729">
-              <caret line="207" column="83" selection-start-line="207" selection-start-column="83" selection-end-line="207" selection-end-column="83" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="ActionController.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="7695">
-              <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
-              <folding>
-                <element signature="e#39#70#0#PHP" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Calc.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3267">
-              <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-              <folding>
-                <marker date="1463476382540" expanded="true" signature="282:317" placeholder="update users... " />
-                <marker date="1463476382540" expanded="true" signature="1029:1071" placeholder="update users... " />
-                <marker date="1463476382540" expanded="true" signature="2241:2283" placeholder="update users... " />
-                <marker date="1463476382540" expanded="true" signature="3290:3341" placeholder="update users... " />
-                <marker date="1463476382540" expanded="true" signature="3867:3903" placeholder="update users... " />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Worksheet.php" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Libs/PHPExcel/PHPExcel/Worksheet.php">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="66447">
-              <caret line="2461" column="20" selection-start-line="2461" selection-start-column="20" selection-end-line="2461" selection-end-column="20" />
+            <state relative-caret-position="167">
+              <caret line="207" column="81" selection-start-line="207" selection-start-column="70" selection-end-line="207" selection-end-column="84" />
               <folding />
             </state>
           </provider>
@@ -146,20 +47,21 @@
       <list>
         <option value="$PROJECT_DIR$/app/Modules/Excel/FillData.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/Controller.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/MainController.php" />
         <option value="$PROJECT_DIR$/app/Libs/functions.php" />
         <option value="$PROJECT_DIR$/app/Modules/MatchConfig/Item.php" />
         <option value="$PROJECT_DIR$/app/Modules/Score/Sort.php" />
         <option value="$PROJECT_DIR$/app/Modules/Score/Show.php" />
-        <option value="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" />
         <option value="$PROJECT_DIR$/app/Modules/Score/Calc.php" />
-        <option value="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/ScoreController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/ActionController.php" />
+        <option value="$PROJECT_DIR$/app/Http/Controllers/MainController.php" />
+        <option value="$PROJECT_DIR$/config/database.php" />
+        <option value="$PROJECT_DIR$/app/Modules/Excel/Template.php" />
       </list>
     </option>
   </component>
-  <component name="JsBuildToolGruntFileManager" detection-done="true" />
-  <component name="JsBuildToolPackageJson" detection-done="true">
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER">
     <package-json value="$PROJECT_DIR$/package.json" />
   </component>
   <component name="JsGulpfileManager">
@@ -169,6 +71,7 @@
         <gulpfile-path>$PROJECT_DIR$/gulpfile.js</gulpfile-path>
       </GulpfileState>
     </gulpfiles>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="PhpServers">
     <servers />
@@ -351,11 +254,12 @@
       <workItem from="1463477715968" duration="601000" />
       <workItem from="1463479094243" duration="3772000" />
       <workItem from="1463489194653" duration="2756000" />
+      <workItem from="1465221291356" duration="2190000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="26818000" />
+    <option name="totallyTimeSpent" value="29008000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="754" extended-state="6" />
@@ -398,20 +302,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1463476382540" expanded="true" signature="282:317" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="1029:1071" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="2241:2283" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3290:3341" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3867:3903" placeholder="update users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/app/Libs/PHPExcel/PHPExcel/Worksheet.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="66447">
@@ -457,8 +347,8 @@
         <state relative-caret-position="1836">
           <caret line="74" column="43" selection-start-line="74" selection-start-column="43" selection-end-line="74" selection-end-column="43" />
           <folding>
-            <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-            <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1834:1884" ph="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1924:1983" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -469,6 +359,11 @@
           <caret line="276" column="0" selection-start-line="276" selection-start-column="0" selection-end-line="276" selection-end-column="0" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -477,13 +372,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <marker date="1463476382540" expanded="true" signature="282:317" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="1029:1071" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="2241:2283" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3290:3341" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3867:3903" placeholder="update users... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -532,8 +421,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-            <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1834:1884" ph="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1924:1983" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -544,6 +433,11 @@
           <caret line="165" column="9" selection-start-line="165" selection-start-column="9" selection-end-line="165" selection-end-column="9" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -585,8 +479,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-            <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1834:1884" ph="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1924:1983" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -597,6 +491,11 @@
           <caret line="152" column="0" selection-start-line="152" selection-start-column="0" selection-end-line="152" selection-end-column="0" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -615,6 +514,11 @@
           <caret line="152" column="152" selection-start-line="152" selection-start-column="152" selection-end-line="152" selection-end-column="152" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -624,8 +528,8 @@
         <state relative-caret-position="0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-            <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1834:1884" ph="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1924:1983" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -634,13 +538,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="16" column="59" selection-start-line="16" selection-start-column="59" selection-end-line="16" selection-end-column="59" />
-          <folding>
-            <marker date="1463476382540" expanded="true" signature="282:317" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="1029:1071" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="2241:2283" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3290:3341" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3867:3903" placeholder="update users... " />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -664,6 +562,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -688,6 +591,11 @@
           <caret line="130" column="56" selection-start-line="130" selection-start-column="56" selection-end-line="130" selection-end-column="56" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -697,8 +605,8 @@
         <state relative-caret-position="0">
           <caret line="157" column="69" selection-start-line="157" selection-start-column="69" selection-end-line="157" selection-end-column="69" />
           <folding>
-            <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-            <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1834:1884" ph="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1924:1983" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -716,6 +624,11 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
           </folding>
         </state>
       </provider>
@@ -748,13 +661,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MainController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="71" column="0" selection-start-line="71" selection-start-column="0" selection-end-line="72" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="jar://$APPLICATION_HOME_DIR$/plugins/php/lib/php.jar!/com/jetbrains/php/lang/psi/stubs/data/standard_8.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -770,9 +676,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libs/functions.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3267">
+          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Libs/PHPExcel/PHPExcel/Worksheet.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="66447">
+          <caret line="2461" column="20" selection-start-line="2461" selection-start-column="20" selection-end-line="2461" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="436">
+          <caret line="403" column="0" selection-start-line="403" selection-start-column="0" selection-end-line="403" selection-end-column="0" />
+          <folding>
+            <element signature="e#39#70#0#PHP" expanded="true" />
+            <marker date="1465219332735" expanded="true" signature="582:627" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="727:772" ph="update stude... " />
+            <marker date="1465219332735" expanded="true" signature="2329:2364" ph="update users... " />
+            <marker date="1465219332735" expanded="true" signature="3385:3417" ph="DROP TABLE I... " />
+            <marker date="1465219332735" expanded="true" signature="6260:6293" ph="update users... " />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/MainController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1296">
+          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/config/database.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="58" column="54" selection-start-line="58" selection-start-column="54" selection-end-line="58" selection-end-column="54" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/Score/Show.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
+        <state relative-caret-position="477">
           <caret line="27" column="54" selection-start-line="27" selection-start-column="54" selection-end-line="27" selection-end-column="55" />
           <folding />
         </state>
@@ -788,68 +749,28 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Modules/Score/Sort.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="486">
+        <state relative-caret-position="477">
           <caret line="18" column="30" selection-start-line="18" selection-start-column="30" selection-end-line="18" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libs/PHPExcel/PHPExcel/Worksheet.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="66447">
-          <caret line="2461" column="20" selection-start-line="2461" selection-start-column="20" selection-end-line="2461" selection-end-column="20" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ActionController.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="7695">
-          <caret line="290" column="0" selection-start-line="290" selection-start-column="0" selection-end-line="290" selection-end-column="0" />
-          <folding>
-            <element signature="e#39#70#0#PHP" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Score/Calc.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3267">
-          <caret line="122" column="0" selection-start-line="122" selection-start-column="0" selection-end-line="122" selection-end-column="0" />
-          <folding>
-            <marker date="1463476382540" expanded="true" signature="282:317" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="1029:1071" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="2241:2283" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3290:3341" placeholder="update users... " />
-            <marker date="1463476382540" expanded="true" signature="3867:3903" placeholder="update users... " />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Libs/functions.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="7" column="9" selection-start-line="7" selection-start-column="9" selection-end-line="7" selection-end-column="9" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="729">
-          <caret line="207" column="83" selection-start-line="207" selection-start-column="83" selection-end-line="207" selection-end-column="83" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/app/Http/Controllers/ScoreController.php">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="342">
-          <caret line="241" column="113" selection-start-line="241" selection-start-column="113" selection-end-line="241" selection-end-column="113" />
+        <state relative-caret-position="72">
+          <caret line="129" column="5" selection-start-line="129" selection-start-column="5" selection-end-line="129" selection-end-column="5" />
           <folding>
-            <marker date="1463492655213" expanded="true" signature="1834:1884" placeholder="update users... " />
-            <marker date="1463492655213" expanded="true" signature="1924:1983" placeholder="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1834:1884" ph="update users... " />
+            <marker date="1465219332747" expanded="true" signature="1924:1983" ph="update users... " />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Modules/Excel/Template.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="167">
+          <caret line="207" column="81" selection-start-line="207" selection-start-column="70" selection-end-line="207" selection-end-column="84" />
+          <folding />
         </state>
       </provider>
     </entry>

@@ -56,7 +56,7 @@ return [
             'driver' => 'mysql',
             'host' => 'localhost',
             'port' => '3306',
-            'database' => '2016kscm',
+            'database' => include __DIR__ . '/my.php',
             'username' => 'root',
             'password' => '',
             'charset' => 'utf8',

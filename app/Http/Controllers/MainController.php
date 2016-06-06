@@ -73,6 +73,9 @@ class MainController extends Controller {
 		copy(gbk(base_path('/通用模板/更改姓名.xlsx')), gbk($workDir.'/导入/更改姓名.xlsx'));
 		copy(gbk(base_path('/通用模板/添加名单.xlsx')), gbk($workDir.'/导入/添加名单.xlsx'));
 		copy(gbk(base_path('/通用模板/自定义导入.xlsx')), gbk($workDir.'/导入/自定义导入.xlsx'));
+
+		//保存数据库名
+		file_put_contents(base_path('config/my.php'), '<?php return ' . var_export(matchConfig('全局.数据库'), true) . ';');
 	}
 
 	public function getIndex()
