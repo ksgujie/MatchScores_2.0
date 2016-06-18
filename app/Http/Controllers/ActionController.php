@@ -207,6 +207,8 @@ class ActionController extends Controller {
 			if (matchConfig("裁判用表.$itemName.缩至一页")=='是') {
 				$objExcel->printInOnePage();
 			}
+			//在A1单元格添加批注:项目名称,方便查看是哪个项目
+			$objExcel->objSheet->getComment('A1')->getText()->createTextRun("\n".$itemName);
 		}
 
 		//保存
