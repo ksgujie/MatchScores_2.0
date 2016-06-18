@@ -209,7 +209,7 @@ class Template extends Base {
 			//面边距
 			$objSheet->getPageMargins()->setHeader(0.3);
 			$objSheet->getPageMargins()->setTop(0.3);
-			$objSheet->getPageMargins()->setFooter(0.3);
+			$objSheet->getPageMargins()->setFooter(0.2);
 			$objSheet->getPageMargins()->setBottom(0.5);
 			$objSheet->getPageMargins()->setLeft(0.1);
 			$objSheet->getPageMargins()->setRight(0.1);

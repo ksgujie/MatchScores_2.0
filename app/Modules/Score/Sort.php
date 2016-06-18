@@ -20,6 +20,7 @@ class Sort
 
 		$strReg = '/^([-\d]+)(\d{'. $timeLen .'})$/';
 		preg_match($strReg, $inputScore1, $arr);
+
 		$score1 = (int) preg_replace('/^0+/', '', $arr[1]);	//去掉最前面的0,防止有负数
 		$time1 = (int)$arr[2];
 
@@ -82,7 +83,7 @@ class Sort
 		
 		$arrScore = self::得出_高低分及用时($inputScore1, $inputScore2, $timeLen);
 		$高分 = $arrScore['高分'];
-		$低分 = $arrScore['高分'];
+		$低分 = $arrScore['低分'];
 		$高分用时 = $arrScore['高分用时'];
 		$低分用时 = $arrScore['低分用时'];
 
@@ -109,9 +110,9 @@ class Sort
 		$inputScore2 = $input['inputScore2'];
 		$timeLen	 = $input['timeLen'];
 
-		$arrScore = self::得出_高低分及用时($inputScore1, $inputScore2, $timeLen);
+		$arrScore = self::得出_高低分及用时_适合用时短者胜($inputScore1, $inputScore2, $timeLen);
 		$高分 = $arrScore['高分'];
-		$低分 = $arrScore['高分'];
+		$低分 = $arrScore['低分'];
 		$高分用时 = $arrScore['高分用时'];
 		$低分用时 = $arrScore['低分用时'];
 
@@ -126,6 +127,7 @@ class Sort
 	}
 
 	/**
+	 * 遥控直升机典型算法
 	 * 两轮，只比最高轮成绩，先看得分，得分相同看最高轮用时，用时短者胜
 	 * 代码复制至“高分低分用时短”，就改了最后一个return后面的代码
 	 * @param $inputScore1
@@ -141,7 +143,7 @@ class Sort
 
 		$arrScore = self::得出_高低分及用时_适合用时短者胜($inputScore1, $inputScore2, $timeLen);
 		$高分 = $arrScore['高分'];
-		$低分 = $arrScore['高分'];
+		$低分 = $arrScore['低分'];
 		$高分用时 = $arrScore['高分用时'];
 		$低分用时 = $arrScore['低分用时'];
 
@@ -156,6 +158,20 @@ class Sort
 				$高分>=0 ? Show::补零($高分) : Show::负数补零($高分),
 				Show::补零(1000000000 - $高分用时),
 			]
+		);
+	}
+
+	public static function 两轮高分低分($input)
+	{
+		$inputScore1 = (int)$input['inputScore1'];
+		$inputScore2 = (int)$input['inputScore2'];
+		$max = max($inputScore1, $inputScore2);
+		$min = min($inputScore1, $inputScore2);
+		return join(',',
+				[
+						Show::补零($max),
+						Show::补零($min)
+				]
 		);
 	}
 
